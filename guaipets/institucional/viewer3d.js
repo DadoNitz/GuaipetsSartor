@@ -146,7 +146,7 @@ export function criarVisualizador(palco) {
   function montar(m, pts, fundo, almofada) {
     const g = new THREE.Group();
     const mat = pelo(m); mat.side = THREE.DoubleSide;
-    g.add(new THREE.Mesh(varrer(pts, PERFIL, m.rep), mat));
+    g.add(new THREE.Mesh(varrer(pts, PERFIL, 1), mat));
     g.add(tuboContorno(pts, 0.088, 0.292, 0.009, m.debrum));
     g.add(tuboContorno(pts, 0.078, 0.006, 0.009, m.debrum));
     const chaoCama = new THREE.Mesh(fundo, pelo({ ...m, rep: 1 })); chaoCama.rotation.x = -Math.PI / 2; chaoCama.position.y = 0.002; g.add(chaoCama);
