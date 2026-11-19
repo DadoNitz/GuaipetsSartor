@@ -31,7 +31,7 @@ export function criarVisualizador(palco) {
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.05;
+  renderer.toneMappingExposure = 0.88;
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.domElement.className = 'cena3d';
@@ -42,7 +42,7 @@ export function criarVisualizador(palco) {
   scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
 
   const camera = new THREE.PerspectiveCamera(32, 1, 0.05, 50);
-  camera.position.set(1.35, 1.0, 1.6);
+  camera.position.set(1.2, 1.3, 1.45);
 
   scene.add(new THREE.HemisphereLight(0xfff6ea, 0x8a7360, 0.55));
   const sol = new THREE.DirectionalLight(0xffffff, 2.2);
@@ -75,7 +75,7 @@ export function criarVisualizador(palco) {
     c.colorSpace = THREE.SRGBColorSpace; c.wrapS = c.wrapT = TEXTURAS[nome] ? THREE.RepeatWrapping : THREE.MirroredRepeatWrapping;
     c.repeat.set(rep, 1); c.anisotropy = 8; return (cache[k] = c);
   }
-  const pelo = (m) => new THREE.MeshPhysicalMaterial({ map: tex(m.pele, m.rep), roughness: 0.92, sheen: 1, sheenRoughness: 0.55, sheenColor: new THREE.Color(0xffffff).multiplyScalar(0.35) });
+  const pelo = (m) => new THREE.MeshPhysicalMaterial({ map: tex(m.pele, m.rep), roughness: 0.92, sheen: 1, sheenRoughness: 0.55, sheenColor: new THREE.Color(0xffffff).multiplyScalar(0.2) });
   const couro = () => new THREE.MeshPhysicalMaterial({ map: tex('couro', 1), color: 0x3a3430, roughness: 0.55, clearcoat: 0.25, clearcoatRoughness: 0.6 });
   const debrum = (cor) => new THREE.MeshPhysicalMaterial({ color: cor, roughness: 0.42, clearcoat: 0.4 });
 
