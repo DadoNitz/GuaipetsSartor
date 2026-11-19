@@ -8,12 +8,12 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 const CDN = 'https://d2ol7oe51mr4n9.cloudfront.net/user_3Fl1LEZFXzzsah8SKDLWeAM5ZmC/';
 export const MODELOS = [
-  { id: 'patchwork', forma: 'ret', pele: 'patchwork', rep: 3.2, debrum: 0x2a211d, linha: 'Linha Trabalhada', nome: 'Retangular Patchwork', glb: 'models/retangular-patchwork.glb', thumb: CDN + 'd2a086c9-93b6-4956-a2c3-3afb039def7b.jpg', desc: 'Recortes de couro malhado em chevron, borda debruada e almofada central em couro preto.', specs: [['Formato', 'Retangular'], ['Acabamento', 'Patchwork'], ['Pele', 'Malhada natural']] },
-  { id: 'redonda', forma: 'red', pele: 'chevron', rep: 4, debrum: 0x161414, linha: 'Linha Trabalhada', nome: 'Redonda Chevron', glb: 'models/redonda-chevron.glb', thumb: CDN + 'c7b735d1-df32-4304-be35-6da092be9d0d.jpg', desc: 'Formato ninho, laterais altas em patchwork chevron preto e branco para o pet se enrolar.', specs: [['Formato', 'Redonda'], ['Acabamento', 'Patchwork chevron'], ['Pele', 'Preto e branco']] },
-  { id: 'laranja', forma: 'ret', pele: 'laranja', rep: 3, debrum: 0x1c2a48, linha: 'Linha Tingida', nome: 'Retangular Laranja', glb: 'models/retangular-laranja.glb', thumb: CDN + '842faed1-dffc-4981-835a-6e4b980607f0.jpg', desc: 'Pelo longo com tingimento laranja intenso e debrum em couro marinho.', specs: [['Formato', 'Retangular'], ['Acabamento', 'Liso'], ['Pele', 'Tingimento especial']] },
-  { id: 'malhada', forma: 'ret', pele: 'malhada', rep: 3, debrum: 0x161414, linha: 'Linha Exclusiva', nome: 'Retangular Malhada', glb: 'models/retangular-malhada.glb', thumb: 'img/pele-malhada.jpg', desc: 'Pele malhada marrom e branca, única em cada peça, com debrum em couro preto.', specs: [['Formato', 'Retangular'], ['Acabamento', 'Liso'], ['Pele', 'Exclusiva']] },
-  { id: 'cinza', forma: 'ret', pele: 'cinza', rep: 3, debrum: 0x161414, linha: 'Linha Lisa', nome: 'Retangular Cinza', glb: 'models/retangular-cinza.glb', thumb: 'img/pele-cinza.jpg', desc: 'Pelo curto cinza mesclado, discreta e fácil de combinar.', specs: [['Formato', 'Retangular'], ['Acabamento', 'Liso'], ['Pele', 'Cinza natural']] },
-  { id: 'verde', forma: 'ret', pele: 'verde', rep: 3, debrum: 0x14110f, linha: 'Linha Tingida', nome: 'Retangular Verde', glb: 'models/retangular-verde.glb', thumb: 'img/pele-verde.jpg', desc: 'Pelo longo tingido em verde profundo com debrum em couro escuro.', specs: [['Formato', 'Retangular'], ['Acabamento', 'Liso'], ['Pele', 'Tingimento especial']] },
+  { id: 'patchwork', forma: 'ret', pele: 'patchwork', rep: 0.8, debrum: 0x2a211d, linha: 'Linha Trabalhada', nome: 'Retangular Patchwork', glb: 'models/retangular-patchwork.glb', thumb: CDN + 'd2a086c9-93b6-4956-a2c3-3afb039def7b.jpg', desc: 'Recortes de couro malhado em chevron, borda debruada e almofada central em couro preto.', specs: [['Formato', 'Retangular'], ['Acabamento', 'Patchwork'], ['Pele', 'Malhada natural']] },
+  { id: 'redonda', forma: 'red', pele: 'chevron', rep: 2.2, debrum: 0x161414, linha: 'Linha Trabalhada', nome: 'Redonda Chevron', glb: 'models/redonda-chevron.glb', thumb: CDN + 'c7b735d1-df32-4304-be35-6da092be9d0d.jpg', desc: 'Formato ninho, laterais altas em patchwork chevron preto e branco para o pet se enrolar.', specs: [['Formato', 'Redonda'], ['Acabamento', 'Patchwork chevron'], ['Pele', 'Preto e branco']] },
+  { id: 'laranja', forma: 'ret', pele: 'laranja', rep: 2.4, debrum: 0x1c2a48, linha: 'Linha Tingida', nome: 'Retangular Laranja', glb: 'models/retangular-laranja.glb', thumb: CDN + '842faed1-dffc-4981-835a-6e4b980607f0.jpg', desc: 'Pelo longo com tingimento laranja intenso e debrum em couro marinho.', specs: [['Formato', 'Retangular'], ['Acabamento', 'Liso'], ['Pele', 'Tingimento especial']] },
+  { id: 'malhada', forma: 'ret', pele: 'malhada', rep: 2.6, debrum: 0x161414, linha: 'Linha Exclusiva', nome: 'Retangular Malhada', glb: 'models/retangular-malhada.glb', thumb: 'img/pele-malhada.jpg', desc: 'Pele malhada marrom e branca, única em cada peça, com debrum em couro preto.', specs: [['Formato', 'Retangular'], ['Acabamento', 'Liso'], ['Pele', 'Exclusiva']] },
+  { id: 'cinza', forma: 'ret', pele: 'cinza', rep: 2.4, debrum: 0x161414, linha: 'Linha Lisa', nome: 'Retangular Cinza', glb: 'models/retangular-cinza.glb', thumb: 'img/pele-cinza.jpg', desc: 'Pelo curto cinza mesclado, discreta e fácil de combinar.', specs: [['Formato', 'Retangular'], ['Acabamento', 'Liso'], ['Pele', 'Cinza natural']] },
+  { id: 'verde', forma: 'ret', pele: 'verde', rep: 2.4, debrum: 0x14110f, linha: 'Linha Tingida', nome: 'Retangular Verde', glb: 'models/retangular-verde.glb', thumb: 'img/pele-verde.jpg', desc: 'Pelo longo tingido em verde profundo com debrum em couro escuro.', specs: [['Formato', 'Retangular'], ['Acabamento', 'Liso'], ['Pele', 'Tingimento especial']] },
 ];
 
 export function criarVisualizador(palco) {
@@ -83,23 +83,30 @@ export function criarVisualizador(palco) {
   function sombra(o) { o.traverse(c => { if (c.isMesh) { c.castShadow = true; c.receiveShadow = true; } }); return o; }
 
   function camaRetangular(m) {
-    const g = new THREE.Group(), L = 1.15, W = 0.82;
-    const base = new THREE.Mesh(new THREE.ExtrudeGeometry(retArredondado(L - 0.06, W - 0.06, 0.16), { depth: 0.06, bevelEnabled: true, bevelThickness: 0.025, bevelSize: 0.03, bevelSegments: 4, curveSegments: 24 }), pelo(m));
+    const g = new THREE.Group(), L = 1.15, W = 0.82, R = 0.105, ESC_Y = 1.3;
+    const lado = { ...m, rep: m.rep * 0.6 };
+    // base acolchoada
+    const base = new THREE.Mesh(new THREE.ExtrudeGeometry(retArredondado(L - 0.05, W - 0.05, 0.15), { depth: 0.05, bevelEnabled: true, bevelThickness: 0.025, bevelSize: 0.025, bevelSegments: 4, curveSegments: 24 }), pelo(lado));
     base.rotation.x = -Math.PI / 2; base.position.y = 0.025; g.add(base);
-    const rimPath = caminho(L - 0.26, W - 0.26, 0.12, 0.17);
-    const rim = new THREE.Mesh(new THREE.TubeGeometry(rimPath, 260, 0.135, 28, true), pelo(m));
-    rim.scale.set(1, 1.12, 1); g.add(rim);
-    const pip1 = new THREE.Mesh(new THREE.TubeGeometry(caminho(L - 0.26, W - 0.26, 0.12, 0.17 + 0.135 * 1.12 * 0.98), 260, 0.011, 8, true), debrum(m.debrum)); g.add(pip1);
-    const pip2 = new THREE.Mesh(new THREE.TubeGeometry(caminho(L - 0.02, W - 0.02, 0.17, 0.03), 260, 0.012, 8, true), debrum(m.debrum)); g.add(pip2);
-    const alm = new THREE.Mesh(new THREE.ExtrudeGeometry(retArredondado(L - 0.6, W - 0.6, 0.06), { depth: 0.03, bevelEnabled: true, bevelThickness: 0.05, bevelSize: 0.06, bevelSegments: 6, curveSegments: 20 }), couro());
-    alm.rotation.x = -Math.PI / 2; alm.position.y = 0.1; g.add(alm);
+    // borda (bolster) com seção oval
+    const yRim = 0.07 + R * ESC_Y;
+    const rimPath = caminho(L - 2 * R, W - 2 * R, 0.1, 0);
+    const rim = new THREE.Mesh(new THREE.TubeGeometry(rimPath, 280, R, 32, true), pelo(m));
+    rim.scale.set(1, ESC_Y, 1); rim.position.y = yRim; g.add(rim);
+    // debruns
+    g.add(new THREE.Mesh(new THREE.TubeGeometry(caminho(L - 2 * R, W - 2 * R, 0.1, yRim + R * ESC_Y * 0.97), 280, 0.009, 8, true), debrum(m.debrum)));
+    g.add(new THREE.Mesh(new THREE.TubeGeometry(caminho(L - 0.03, W - 0.03, 0.15, 0.028), 280, 0.01, 8, true), debrum(m.debrum)));
+    // almofada central em couro, levemente estufada
+    const alm = new THREE.Mesh(new THREE.ExtrudeGeometry(retArredondado(L - 4 * R - 0.02, W - 4 * R - 0.02, 0.07), { depth: 0.02, bevelEnabled: true, bevelThickness: 0.045, bevelSize: 0.05, bevelSegments: 8, curveSegments: 24 }), couro());
+    alm.rotation.x = -Math.PI / 2; alm.position.y = 0.105; g.add(alm);
     return sombra(g);
   }
   function camaRedonda(m) {
     const g = new THREE.Group();
-    const base = new THREE.Mesh(new THREE.CylinderGeometry(0.56, 0.58, 0.08, 96), pelo(m)); base.position.y = 0.04; g.add(base);
-    const rim = new THREE.Mesh(new THREE.TorusGeometry(0.42, 0.17, 40, 160), pelo({ ...m, rep: 6 }));
-    rim.rotation.x = Math.PI / 2; rim.scale.set(1, 1, 1.25); rim.position.y = 0.2; g.add(rim);
+    const base = new THREE.Mesh(new THREE.CylinderGeometry(0.56, 0.58, 0.08, 96), pelo({ ...m, rep: 1 })); base.position.y = 0.04; g.add(base);
+    const rim = new THREE.Mesh(new THREE.TorusGeometry(0.43, 0.15, 48, 180), pelo(m));
+    rim.rotation.x = Math.PI / 2; rim.scale.set(1, 1, 1.35); rim.position.y = 0.2; g.add(rim);
+    g.add(new THREE.Mesh(new THREE.TorusGeometry(0.43, 0.008, 8, 180).rotateX(Math.PI / 2).translate(0, 0.2 + 0.15 * 1.35 * 0.98, 0), debrum(m.debrum)));
     const alm = new THREE.Mesh(new THREE.CylinderGeometry(0.29, 0.31, 0.09, 72), couro()); alm.position.y = 0.11; g.add(alm);
     const top = new THREE.Mesh(new THREE.SphereGeometry(0.3, 48, 16, 0, Math.PI * 2, 0, Math.PI / 2), couro()); top.scale.y = 0.15; top.position.y = 0.155; g.add(top);
     return sombra(g);
