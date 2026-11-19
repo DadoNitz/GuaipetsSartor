@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guaipets — Caminhas para pets 100% em couro</title>
+<meta name="description" content="Caminhas para pets feitas 100% em couro natural com pelo. Longa duração, inibição de odor, fácil limpeza e personalização. Novo Hamburgo, RS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Space+Mono:wght@400;700&family=Allura&display=swap" rel="stylesheet">
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.0.0/dist/model-viewer.min.js"></script>
+<style>
+  :root{
+    --amarelo:#F8B500; --amarelo-esc:#E09C00;
+    --marrom:#4E2E27; --marrom-2:#3A211C; --cafe:#6B4337;
+    --creme:#F6F1EB; --creme-2:#EDE5DB; --areia:#D9CBBB;
+    --texto:#3A2722; --suave:#7C6459;
+    --laranja:#E8571B;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Lexend',system-ui,sans-serif;font-weight:300;color:var(--texto);background:var(--creme);line-height:1.6;-webkit-font-smoothing:antialiased}
+  img{display:block;max-width:100%}
+  a{color:inherit}
+  .wrap{width:min(1240px,92vw);margin:0 auto}
+  .eyebrow{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--cafe)}
+  .eyebrow.claro{color:var(--amarelo)}
+  h1,h2,h3{font-weight:400;line-height:1.12;color:var(--marrom);letter-spacing:-.01em}
+  h2{font-size:clamp(2rem,4.2vw,3.4rem)}
+  .assinatura{font-family:'Allura',cursive;font-weight:400}
+  .btn{display:inline-flex;align-items:center;gap:.6rem;font-family:'Space Mono',monospace;font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;padding:1rem 1.6rem;border-radius:2px;transition:.25s}
+  .btn-amarelo{background:var(--amarelo);color:var(--marrom-2)}
+  .btn-amarelo:hover{background:var(--amarelo-esc)}
+  .btn-linha{border:1px solid currentColor}
+  .btn-linha:hover{background:var(--marrom);color:var(--creme);border-color:var(--marrom)}
+
+  /* NAV */
+  header{position:fixed;inset:0 0 auto 0;z-index:50;transition:.3s}
+  header.solido{background:rgba(246,241,235,.94);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--creme-2)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:78px}
+  .nav img{height:40px;width:auto}
+  .nav ul{display:flex;gap:2.2rem;list-style:none;font-size:.9rem}
+  .nav ul a{text-decoration:none;opacity:.8}
+  .nav ul a:hover{opacity:1;color:var(--amarelo-esc)}
+  .nav .btn{padding:.75rem 1.2rem}
+  @media(max-width:900px){.nav ul{display:none}}
+
+  /* HERO */
+  .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1.05fr;background:var(--creme)}
+  .hero-txt{display:flex;flex-direction:column;justify-content:center;padding:120px 6vw 80px max(4vw,calc((100vw - 1240px)/2))}
+  .hero h1{font-size:clamp(2.6rem,5.6vw,5rem);margin:1.4rem 0 1.6rem}
+  .hero h1 em{font-style:normal;color:var(--amarelo-esc)}
+  .hero p{font-size:1.15rem;max-width:30rem;color:var(--suave);margin-bottom:2.4rem}
+  .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+  .hero-img{position:relative;overflow:hidden}
+  .hero-img img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+  .hero-img .assinatura{position:absolute;right:8%;bottom:7%;color:#fff;font-size:clamp(2.4rem,4vw,3.6rem);line-height:.9;text-shadow:0 2px 20px rgba(0,0,0,.35);transform:rotate(-8deg)}
+  .faixa{background:var(--marrom);color:var(--creme);overflow:hidden;white-space:nowrap;padding:1rem 0;font-family:'Space Mono',monospace;font-size:.8rem;letter-spacing:.25em;text-transform:uppercase}
+  .faixa div{display:inline-block;animation:corre 38s linear infinite}
+  .faixa span{margin:0 2.2rem}.faixa b{color:var(--amarelo);font-weight:400}
+  @keyframes corre{to{transform:translateX(-50%)}}
+  @media(max-width:900px){.hero{grid-template-columns:1fr}.hero-img{height:70vh;order:-1}.hero-txt{padding:56px 6vw 72px}}
+
+  section{padding:clamp(80px,11vw,150px) 0}
+
+  /* HISTÓRIA */
+  .historia{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(40px,6vw,90px);align-items:center}
+  .historia-fotos{display:grid;grid-template-columns:1.3fr 1fr;gap:16px;align-items:end}
+  .historia-fotos img{width:100%;object-fit:cover;filter:grayscale(1)}
+  .historia-fotos img:first-child{aspect-ratio:2/3}
+  .historia-fotos img:last-child{aspect-ratio:3/4;margin-bottom:12%}
+  .historia h2{margin:1.2rem 0 2rem}
+  .citacao{font-size:1.12rem;color:var(--suave);border-left:2px solid var(--amarelo);padding-left:1.6rem}
+  .citacao p+p{margin-top:1rem}
+  .citacao strong{color:var(--marrom);font-weight:500}
+  .autor{margin-top:2rem;display:flex;align-items:center;gap:1.2rem}
+  .autor .assinatura{font-size:2.6rem;color:var(--marrom);line-height:1}
+  .autor small{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--suave)}
+  @media(max-width:900px){.historia{grid-template-columns:1fr}}
+
+  /* PRODUTO */
+  .produto{background:var(--marrom);color:var(--creme)}
+  .produto h2{color:var(--creme)}
+  .produto-top{display:grid;grid-template-columns:1fr 1fr;gap:6vw;align-items:end;margin-bottom:70px}
+  .produto-top p{color:var(--areia);font-size:1.08rem}
+  .produto-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:16px}
+  .produto-grid img{width:100%;height:100%;object-fit:cover}
+  .beneficios{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(246,241,235,.14)}
+  .beneficio{background:var(--marrom);padding:1.8rem 1.6rem}
+  .beneficio i{font-style:normal;font-family:'Space Mono',monospace;color:var(--amarelo);font-size:.75rem}
+  .beneficio h3{color:var(--creme);font-size:1.12rem;margin:.6rem 0 .35rem;font-weight:500}
+  .beneficio p{font-size:.88rem;color:var(--areia)}
+  @media(max-width:900px){.produto-top,.produto-grid{grid-template-columns:1fr}}
+
+  /* 3D */
+  .colecao-head{display:flex;justify-content:space-between;align-items:end;gap:2rem;flex-wrap:wrap;margin-bottom:48px}
+  .colecao-head h2{margin-top:1rem}
+  .colecao-head p{max-width:26rem;color:var(--suave)}
+  .viewer{display:grid;grid-template-columns:1fr 340px;background:#fff;border:1px solid var(--creme-2);min-height:600px}
+  .palco{position:relative;background:radial-gradient(ellipse at 50% 60%,#fff 0%,var(--creme) 75%);overflow:hidden}
+  model-viewer{width:100%;height:100%;min-height:600px;--poster-color:transparent;background:transparent}
+  .palco .poster{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:8%}
+  .palco .poster img{max-height:100%;object-fit:contain;mix-blend-mode:multiply}
+  .selo-3d{position:absolute;left:24px;top:24px;font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;background:var(--marrom);color:var(--creme);padding:.5rem .8rem;z-index:2}
+  .dica{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--suave);z-index:2;white-space:nowrap}
+  .painel{border-left:1px solid var(--creme-2);padding:32px;display:flex;flex-direction:column}
+  .painel h3{font-size:1.7rem;margin:.6rem 0 .8rem}
+  .painel p{color:var(--suave);font-size:.95rem}
+  .modelos{margin-top:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding-top:28px}
+  .modelos button{all:unset;cursor:pointer;aspect-ratio:1;border:1px solid var(--creme-2);overflow:hidden;position:relative;transition:.2s}
+  .modelos button img{width:100%;height:100%;object-fit:cover}
+  .modelos button[aria-pressed=true]{outline:2px solid var(--amarelo);outline-offset:2px}
+  .modelos button:hover{border-color:var(--amarelo)}
+  .specs{margin-top:22px;border-top:1px solid var(--creme-2)}
+  .specs div{display:flex;justify-content:space-between;padding:.7rem 0;border-bottom:1px solid var(--creme-2);font-size:.86rem}
+  .specs dt{color:var(--suave)}
+  @media(max-width:900px){.viewer{grid-template-columns:1fr}.painel{border-left:0;border-top:1px solid var(--creme-2)}model-viewer{min-height:420px}.viewer{min-height:0}.palco{min-height:420px}}
+
+  /* PELES */
+  .peles{background:var(--creme-2)}
+  .peles-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:56px}
+  .pele figure{aspect-ratio:3/4;overflow:hidden;background:#fff}
+  .pele img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+  .pele:hover img{transform:scale(1.06)}
+  .pele figcaption{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;margin-top:1rem;color:var(--cafe)}
+  .pele p{font-size:.85rem;color:var(--suave);margin-top:.25rem}
+  .entrega{margin-top:72px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .entrega div{background:var(--creme);padding:2.2rem}
+  .entrega h3{font-size:1.4rem;margin-bottom:.5rem}
+  .entrega p{color:var(--suave)}
+  .entrega small{display:block;margin-top:1rem;font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cafe)}
+  @media(max-width:900px){.peles-grid{grid-template-columns:repeat(2,1fr)}.entrega{grid-template-columns:1fr}}
+
+  /* NOLAH */
+  .nolah{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,90px);align-items:center}
+  .nolah-img{position:relative}
+  .nolah-img img{width:100%;aspect-ratio:4/5;object-fit:cover}
+  .nolah-img .assinatura{position:absolute;left:7%;bottom:6%;color:#fff;font-size:3.2rem;transform:rotate(-8deg);text-shadow:0 2px 16px rgba(0,0,0,.3)}
+  .nolah h2{margin:1.2rem 0 2rem}
+  @media(max-width:900px){.nolah{grid-template-columns:1fr}}
+
+  /* GALERIA */
+  .galeria{padding-top:0}
+  .galeria-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:260px;gap:12px}
+  .galeria-grid img{width:100%;height:100%;object-fit:cover}
+  .g-a{grid-column:span 2;grid-row:span 2}.g-b{grid-column:span 2}
+  @media(max-width:900px){.galeria-grid{grid-template-columns:1fr 1fr;grid-auto-rows:180px}}
+
+  /* MANIFESTO */
+  .manifesto{position:relative;color:#fff;text-align:center;padding:clamp(120px,16vw,210px) 0;overflow:hidden}
+  .manifesto>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.42)}
+  .manifesto .wrap{position:relative;max-width:900px}
+  .manifesto blockquote{font-size:clamp(1.4rem,2.6vw,2.1rem);line-height:1.45;font-weight:300}
+  .manifesto blockquote b{color:var(--amarelo);font-weight:400}
+  .manifesto .assinatura{display:block;font-size:3.4rem;margin-top:2rem}
+
+  /* CONTATO */
+  footer{background:var(--marrom-2);color:var(--creme);padding:clamp(80px,10vw,130px) 0 40px}
+  .contato{display:grid;grid-template-columns:1.2fr 1fr;gap:6vw}
+  .contato h2{color:var(--creme);margin:1.2rem 0 1.4rem}
+  .contato>div>p{color:var(--areia);max-width:30rem;margin-bottom:2.4rem}
+  .canais{display:grid;gap:1px;background:rgba(246,241,235,.14);align-self:start}
+  .canais a{display:block;background:var(--marrom-2);padding:1.5rem 0;text-decoration:none;transition:.2s}
+  .canais a:hover{color:var(--amarelo)}
+  .canais small{display:block;font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amarelo);margin-bottom:.3rem}
+  .canais span{font-size:1.3rem}
+  .rodape{margin-top:100px;padding-top:28px;border-top:1px solid rgba(246,241,235,.14);display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;font-size:.8rem;color:var(--areia)}
+  .rodape img{height:34px;width:auto}
+  @media(max-width:900px){.contato{grid-template-columns:1fr}}
+
+  .revela{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}
+  .revela.on{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.revela{opacity:1;transform:none}.faixa div{animation:none}}
+</style>
+</head>
+<body>
+
+<header id="topo">
+  <nav class="wrap nav">
+    <a href="#inicio"><img src="img/logo.png" alt="Guaipets"></a>
+    <ul>
+      <li><a href="#historia">Nossa história</a></li>
+      <li><a href="#caminhas">Caminhas</a></li>
+      <li><a href="#colecao">Coleção 3D</a></li>
+      <li><a href="#peles">Peles</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <a class="btn btn-amarelo" href="https://guaipets.dooca.store/">Loja</a>
+  </nav>
+</header>
+
+<main id="inicio">
+  <div class="hero">
+    <div class="hero-txt">
+      <span class="eyebrow">Pet accessories · Novo Hamburgo, RS</span>
+      <h1>Caminhas para pets <em>100% em couro.</em></h1>
+      <p>Nascidas para durar mais do que qualquer mordida. Couro natural com pelo, design exclusivo e o seu pet sempre ao seu lado, em todos os ambientes.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-amarelo" href="#colecao">Ver em 3D</a>
+        <a class="btn btn-linha" href="#historia">Nossa história</a>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="img/hero.jpg" alt="Eduardo, fundador da Guaipets, com a Nolah no colo e uma caminha de couro aos pés">
+      <span class="assinatura">Nolah e<br>Eduardo</span>
+    </div>
+  </div>
+
+  <div class="faixa" aria-hidden="true"><div>
+    <span>Longa duração</span><b>●</b><span>Inibição de odor</span><b>●</b><span>Fácil limpeza</span><b>●</b><span>Design moderno</span><b>●</b><span>Sustentável</span><b>●</b><span>Personalização</span><b>●</b>
+    <span>Longa duração</span><b>●</b><span>Inibição de odor</span><b>●</b><span>Fácil limpeza</span><b>●</b><span>Design moderno</span><b>●</b><span>Sustentável</span><b>●</b><span>Personalização</span><b>●</b>
+  </div></div>
+
+  <section id="historia">
+    <div class="wrap historia">
+      <div class="historia-fotos revela">
+        <img src="img/eduardo.jpg" alt="Eduardo Tomazoni abraçando a Nolah">
+        <img src="img/lucky.jpg" alt="Retrato da Nolah">
+      </div>
+      <div class="revela">
+        <span class="eyebrow">A CEO (Nolah) e o fundador (Eduardo)</span>
+        <h2>Tudo começou com um guaipeca que comia camas.</h2>
+        <div class="citacao">
+          <p>“A ideia do produto surgiu quando um dos ‘guaipecas’ que adotei, o <strong>Lucky</strong>, cresceu e achou que poderia comer tudo que encontrasse pela frente, inclusive a cama. Ele destruiu a primeira, a segunda, e então a terceira… todas feitas de tecido.</p>
+          <p>Então, aproveitando que trabalho com o mercado coureiro-calçadista, resolvi desenvolver e testar uma cama feita em <strong>couro natural com pelo</strong>. A experiência foi um sucesso e assim nasceu a Guaipets.”</p>
+        </div>
+        <div class="autor">
+          <span class="assinatura">Eduardo Tomazoni</span>
+          <small>Fundador</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="produto" id="caminhas">
+    <div class="wrap">
+      <div class="produto-top revela">
+        <div>
+          <span class="eyebrow claro">O produto</span>
+          <h2 style="margin-top:1.2rem">Do design ao conforto. Da praticidade à duração.</h2>
+        </div>
+        <p>Desenvolvemos caminhas exclusivas para atender todas as necessidades dos pets, com qualidade garantida e serviço de personalização. Couro de verdade, trabalhado por quem conhece o polo coureiro-calçadista do Vale dos Sinos por dentro.</p>
+      </div>
+      <div class="produto-grid">
+        <img class="revela" src="img/gato-laranja.jpg" alt="Gato sobre caminha de couro com pelo tingido de laranja">
+        <div class="beneficios revela">
+          <div class="beneficio"><i>01</i><h3>Longa duração</h3><p>Couro natural resiste ao uso e às mordidas que destroem o tecido.</p></div>
+          <div class="beneficio"><i>02</i><h3>Inibição de odor</h3><p>Volta da praia ou da piscina sem levar o cheiro pra dentro de casa.</p></div>
+          <div class="beneficio"><i>03</i><h3>Fácil limpeza</h3><p>Prática no dia a dia: o pet brinca à vontade, a cama continua bonita.</p></div>
+          <div class="beneficio"><i>04</i><h3>Conforto</h3><p>Pelo macio por cima, estrutura firme nas laterais para apoiar a cabeça.</p></div>
+          <div class="beneficio"><i>05</i><h3>Design moderno</h3><p>Uma peça de decoração que combina com a sala, não só com o pet.</p></div>
+          <div class="beneficio"><i>06</i><h3>Personalização</h3><p>Tamanhos, peles, tingimentos e acabamentos lisos ou trabalhados.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="colecao">
+    <div class="wrap">
+      <div class="colecao-head revela">
+        <div>
+          <span class="eyebrow">Coleção em 3D</span>
+          <h2>Gire, aproxime, escolha.</h2>
+        </div>
+        <p>Veja cada caminha de todos os ângulos antes de escolher. Arraste para girar e use a pinça ou a roda do mouse para aproximar.</p>
+      </div>
+      <div class="viewer revela">
+        <div class="palco" id="palco">
+          <span class="selo-3d" id="selo">3D · interativo</span>
+          <div class="poster" id="poster"><img id="posterImg" src="img/pele-patchwork.jpg" alt=""></div>
+          <span class="dica" id="dica">Arraste para girar</span>
+        </div>
+        <aside class="painel">
+          <span class="eyebrow" id="mLinha">Linha</span>
+          <h3 id="mNome">Caminha</h3>
+          <p id="mDesc"></p>
+          <dl class="specs" id="mSpecs"></dl>
+          <div class="modelos" id="modelos" role="group" aria-label="Escolha a caminha"></div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="peles" id="peles">
+    <div class="wrap">
+      <div class="revela">
+        <span class="eyebrow">Peles e acabamentos</span>
+        <h2 style="margin-top:1rem;max-width:40rem">Cada caminha é única, como cada pele.</h2>
+      </div>
+      <div class="peles-grid">
+        <div class="pele revela"><figure><img src="img/pele-verde.jpg" alt="Pele com tingimento verde"></figure><figcaption>Tingimento especial</figcaption><p>Cores sob medida para o seu ambiente.</p></div>
+        <div class="pele revela"><figure><img src="img/pele-redonda.jpg" alt="Caminha redonda de patchwork"></figure><figcaption>Diversos tamanhos</figcaption><p>Do filhote ao porte grande.</p></div>
+        <div class="pele revela"><figure><img src="img/pele-cinza.jpg" alt="Couro com pelo cinza"></figure><figcaption>Couro de qualidade</figcaption><p>Peles selecionadas uma a uma.</p></div>
+        <div class="pele revela"><figure><img src="img/pele-patchwork.jpg" alt="Caminha retangular de patchwork"></figure><figcaption>Lisos ou trabalhados</figcaption><p>Patchwork, chevron e recortes.</p></div>
+        <div class="pele revela"><figure><img src="img/pele-malhada.jpg" alt="Pele malhada exclusiva"></figure><figcaption>Peles exclusivas</figcaption><p>Malhados que nunca se repetem.</p></div>
+      </div>
+      <div class="entrega">
+        <div class="revela"><span class="eyebrow">Pronta-entrega</span><h3 style="margin-top:.8rem">Modelos disponíveis na loja</h3><p>Escolha entre as caminhas prontas e receba sem espera de produção.</p></div>
+        <div class="revela"><span class="eyebrow">Sob encomenda · drop shipping</span><h3 style="margin-top:.8rem">Feita para o seu pet</h3><p>Você escolhe tamanho, pele e acabamento; a gente produz e envia direto.</p><small>* Tempo estimado de produção de 20 dias + frete</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap nolah">
+      <div class="nolah-img revela">
+        <img src="img/nolah.jpg" alt="Nolah deitada numa caminha de couro com pelo bege">
+        <span class="assinatura">Nolah, CEO</span>
+      </div>
+      <div class="revela">
+        <span class="eyebrow">Conexão e relacionamento</span>
+        <h2>“Posso estar onde ele estiver.”</h2>
+        <div class="citacao">
+          <p>“Minha caminha Guaipets me aproximou do meu dono. Posso estar onde ele estiver, com nossos amigos e família, em todos os ambientes.</p>
+          <p>Além disso, sou muito mais livre para brincar à vontade, pela praticidade de limpeza e inibição de odor depois que corro na areia ou entro na piscina. A Guaipets me trouxe muito mais <strong>conexão e amor</strong>.”</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="galeria" aria-label="Galeria">
+    <div class="wrap galeria-grid">
+      <img class="g-a revela" src="img/cama-preta.jpg" alt="Nolah sentada numa caminha preta">
+      <img class="g-b revela" src="img/cama-patchwork.jpg" alt="Caminha de patchwork ao lado de uma poltrona de couro">
+      <img class="revela" src="img/laranja-detalhe.jpg" alt="Detalhe do pelo laranja">
+      <img class="revela" src="img/det-patch.jpg" alt="Detalhe do patchwork">
+      <img class="g-b revela" src="img/malhada.jpg" alt="Cachorro brincando numa caminha malhada">
+      <img class="g-b revela" src="img/cama-pelo.jpg" alt="Cachorro numa caminha de pelo marrom">
+    </div>
+  </section>
+
+  <section class="manifesto">
+    <img src="img/poltrona.jpg" alt="">
+    <div class="wrap revela">
+      <span class="eyebrow claro">Manifesto</span>
+      <blockquote style="margin-top:1.6rem">“Nossos pets merecem o melhor e devem estar presentes em todas as ocasiões. A Guaipets nasceu pra isso: para conectar as experiências mais felizes das pessoas com seus melhores amigos, colocando os pets no seu devido lugar: <b>ao nosso lado.</b>”</blockquote>
+      <span class="assinatura">Eduardo Tomazoni</span>
+    </div>
+  </section>
+</main>
+
+<footer id="contato">
+  <div class="wrap">
+    <div class="contato">
+      <div class="revela">
+        <span class="eyebrow claro">Contato</span>
+        <h2>Vamos fazer a caminha do seu pet?</h2>
+        <p>Pronta-entrega, encomenda personalizada ou revenda: fala com a gente.</p>
+        <a class="btn btn-amarelo" href="https://wa.me/5551991341212">Chamar no WhatsApp</a>
+      </div>
+      <div class="canais revela">
+        <a href="https://wa.me/5551991341212"><small>WhatsApp</small><span>(51) 99134-1212</span></a>
+        <a href="mailto:eduardotomazoni@gmail.com"><small>E-mail</small><span>eduardotomazoni@gmail.com</span></a>
+        <a href="https://guaipets.dooca.store/"><small>Loja online</small><span>guaipets.dooca.store</span></a>
+      </div>
+    </div>
+    <div class="rodape">
+      <img src="img/logo-claro.png" alt="Guaipets">
+      <span>© <span id="ano"></span> Guaipets · Pet accessories · Novo Hamburgo, RS</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('ano').textContent=new Date().getFullYear();
+  const topo=document.getElementById('topo');
+  const onScroll=()=>topo.classList.toggle('solido',scrollY>40);onScroll();addEventListener('scroll',onScroll,{passive:true});
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('.revela').forEach(el=>io.observe(el));
+
+  // Coleção 3D: cada item aponta para um .glb em models/. Sem o arquivo, mostra a foto.
+  const MODELOS=[
+    {id:'patchwork',linha:'Linha Trabalhada',nome:'Retangular Patchwork',glb:'models/retangular-patchwork.glb',thumb:'img/pele-patchwork.jpg',desc:'Recortes de couro malhado em chevron, borda debruada e almofada central em couro preto.',specs:[['Formato','Retangular'],['Acabamento','Patchwork'],['Pele','Malhada natural']]},
+    {id:'redonda',linha:'Linha Trabalhada',nome:'Redonda Chevron',glb:'models/redonda-chevron.glb',thumb:'img/pele-redonda.jpg',desc:'Formato ninho, laterais altas em patchwork chevron preto e branco para o pet se enrolar.',specs:[['Formato','Redonda'],['Acabamento','Patchwork chevron'],['Pele','Preto e branco']]},
+    {id:'laranja',linha:'Linha Tingida',nome:'Retangular Laranja',glb:'models/retangular-laranja.glb',thumb:'img/laranja-detalhe.jpg',desc:'Pelo longo com tingimento laranja intenso e debrum em couro marinho.',specs:[['Formato','Retangular'],['Acabamento','Liso'],['Pele','Tingimento especial']]},
+    {id:'preta',linha:'Linha Lisa',nome:'Retangular Preta',glb:'models/retangular-preta.glb',thumb:'img/cama-preta.jpg',desc:'Pelo preto natural, sóbria e elegante, para qualquer ambiente.',specs:[['Formato','Retangular'],['Acabamento','Liso'],['Pele','Preta natural']]},
+    {id:'cinza',linha:'Linha Lisa',nome:'Retangular Cinza',glb:'models/retangular-cinza.glb',thumb:'img/pele-cinza.jpg',desc:'Pelo curto cinza mesclado, discreta e fácil de combinar.',specs:[['Formato','Retangular'],['Acabamento','Liso'],['Pele','Cinza natural']]},
+    {id:'verde',linha:'Linha Tingida',nome:'Retangular Verde',glb:'models/retangular-verde.glb',thumb:'img/pele-verde.jpg',desc:'Pelo longo tingido em verde profundo com debrum em couro escuro.',specs:[['Formato','Retangular'],['Acabamento','Liso'],['Pele','Tingimento especial']]},
+  ];
+  const palco=document.getElementById('palco'),poster=document.getElementById('poster'),posterImg=document.getElementById('posterImg'),dica=document.getElementById('dica'),selo=document.getElementById('selo');
+  const box=document.getElementById('modelos');
+  let mv=null;
+  async function existe(url){try{const r=await fetch(url,{method:'HEAD'});return r.ok}catch(e){return false}}
+  async function mostrar(m){
+    document.getElementById('mLinha').textContent=m.linha;
+    document.getElementById('mNome').textContent=m.nome;
+    document.getElementById('mDesc').textContent=m.desc;
+    document.getElementById('mSpecs').innerHTML=m.specs.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join('');
+    box.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.id===m.id));
+    if(await existe(m.glb)){
+      if(!mv){mv=document.createElement('model-viewer');mv.setAttribute('camera-controls','');mv.setAttribute('auto-rotate','');mv.setAttribute('shadow-intensity','1');mv.setAttribute('exposure','1.05');mv.setAttribute('environment-image','neutral');mv.setAttribute('camera-orbit','35deg 70deg auto');mv.setAttribute('interaction-prompt','none');palco.appendChild(mv)}
+      mv.src=m.glb;mv.alt='Modelo 3D: '+m.nome;mv.hidden=false;poster.hidden=true;dica.hidden=false;selo.textContent='3D · interativo';
+    }else{
+      if(mv)mv.hidden=true;poster.hidden=false;posterImg.src=m.thumb;posterImg.alt=m.nome;dica.hidden=true;selo.textContent='3D em breve';
+    }
+  }
+  MODELOS.forEach((m,i)=>{const b=document.createElement('button');b.dataset.id=m.id;b.setAttribute('aria-label',m.nome);b.innerHTML=`<img src="${m.thumb}" alt="">`;b.onclick=()=>mostrar(m);box.appendChild(b)});
+  mostrar(MODELOS[0]);
+</script>
+
+<a href="../../" style="position:fixed;left:16px;bottom:16px;z-index:999;display:flex;align-items:center;gap:8px;padding:8px 12px 8px 8px;background:rgba(15,26,46,.88);color:#E8D5A8;font:500 12px/1 system-ui,sans-serif;letter-spacing:.08em;text-decoration:none;border:1px solid rgba(201,164,92,.4);backdrop-filter:blur(8px)" aria-label="Voltar para as apresentações da Sartor"><span style="display:grid;place-items:center;width:22px;height:22px;border:1px solid #C9A45C;font:500 15px/1 'Cormorant Garamond',Georgia,serif;color:#C9A45C">S</span>VOLTAR</a>
+</body>
+</html>
