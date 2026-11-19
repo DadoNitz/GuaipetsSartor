@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Space+Mono:wght@400;700&family=Allura&display=swap" rel="stylesheet">
-<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.0.0/dist/model-viewer.min.js"></script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
 <style>
   :root{
     --amarelo:#F8B500; --amarelo-esc:#E09C00;
@@ -98,7 +98,7 @@
   .colecao-head p{max-width:26rem;color:var(--suave)}
   .viewer{display:grid;grid-template-columns:1fr 340px;background:#fff;border:1px solid var(--creme-2);min-height:600px}
   .palco{position:relative;background:radial-gradient(ellipse at 50% 60%,#fff 0%,var(--creme) 75%);overflow:hidden}
-  model-viewer{width:100%;height:100%;min-height:600px;--poster-color:transparent;background:transparent}
+  .cena3d{position:absolute;inset:0;width:100%!important;height:100%!important;cursor:grab;touch-action:none}.cena3d:active{cursor:grabbing}
   .palco .poster{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:8%}
   .palco .poster img{max-height:100%;object-fit:contain;mix-blend-mode:multiply}
   .selo-3d{position:absolute;left:24px;top:24px;font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;background:var(--marrom);color:var(--creme);padding:.5rem .8rem;z-index:2}
@@ -114,7 +114,7 @@
   .specs{margin-top:22px;border-top:1px solid var(--creme-2)}
   .specs div{display:flex;justify-content:space-between;padding:.7rem 0;border-bottom:1px solid var(--creme-2);font-size:.86rem}
   .specs dt{color:var(--suave)}
-  @media(max-width:900px){.viewer{grid-template-columns:1fr}.painel{border-left:0;border-top:1px solid var(--creme-2)}model-viewer{min-height:420px}.viewer{min-height:0}.palco{min-height:420px}}
+  @media(max-width:900px){.viewer{grid-template-columns:1fr}.painel{border-left:0;border-top:1px solid var(--creme-2)}.viewer{min-height:0}.palco{min-height:420px}}
 
   /* PELES */
   .peles{background:var(--creme-2)}
@@ -367,33 +367,22 @@
   const onScroll=()=>topo.classList.toggle('solido',scrollY>40);onScroll();addEventListener('scroll',onScroll,{passive:true});
 
 
-  // Coleção 3D: cada item aponta para um .glb em models/. Sem o arquivo, mostra a foto.
-  const MODELOS=[
-    {id:'patchwork',linha:'Linha Trabalhada',nome:'Retangular Patchwork',glb:'models/retangular-patchwork.glb',thumb:'https://d2ol7oe51mr4n9.cloudfront.net/user_3Fl1LEZFXzzsah8SKDLWeAM5ZmC/d2a086c9-93b6-4956-a2c3-3afb039def7b.jpg',desc:'Recortes de couro malhado em chevron, borda debruada e almofada central em couro preto.',specs:[['Formato','Retangular'],['Acabamento','Patchwork'],['Pele','Malhada natural']]},
-    {id:'redonda',linha:'Linha Trabalhada',nome:'Redonda Chevron',glb:'models/redonda-chevron.glb',thumb:'https://d2ol7oe51mr4n9.cloudfront.net/user_3Fl1LEZFXzzsah8SKDLWeAM5ZmC/c7b735d1-df32-4304-be35-6da092be9d0d.jpg',desc:'Formato ninho, laterais altas em patchwork chevron preto e branco para o pet se enrolar.',specs:[['Formato','Redonda'],['Acabamento','Patchwork chevron'],['Pele','Preto e branco']]},
-    {id:'laranja',linha:'Linha Tingida',nome:'Retangular Laranja',glb:'models/retangular-laranja.glb',thumb:'https://d2ol7oe51mr4n9.cloudfront.net/user_3Fl1LEZFXzzsah8SKDLWeAM5ZmC/842faed1-dffc-4981-835a-6e4b980607f0.jpg',desc:'Pelo longo com tingimento laranja intenso e debrum em couro marinho.',specs:[['Formato','Retangular'],['Acabamento','Liso'],['Pele','Tingimento especial']]},
-    {id:'preta',linha:'Linha Lisa',nome:'Retangular Preta',glb:'models/retangular-preta.glb',thumb:'img/cama-preta.jpg',desc:'Pelo preto natural, sóbria e elegante, para qualquer ambiente.',specs:[['Formato','Retangular'],['Acabamento','Liso'],['Pele','Preta natural']]},
-    {id:'cinza',linha:'Linha Lisa',nome:'Retangular Cinza',glb:'models/retangular-cinza.glb',thumb:'img/pele-cinza.jpg',desc:'Pelo curto cinza mesclado, discreta e fácil de combinar.',specs:[['Formato','Retangular'],['Acabamento','Liso'],['Pele','Cinza natural']]},
-    {id:'verde',linha:'Linha Tingida',nome:'Retangular Verde',glb:'models/retangular-verde.glb',thumb:'img/pele-verde.jpg',desc:'Pelo longo tingido em verde profundo com debrum em couro escuro.',specs:[['Formato','Retangular'],['Acabamento','Liso'],['Pele','Tingimento especial']]},
-  ];
-  const palco=document.getElementById('palco'),poster=document.getElementById('poster'),posterImg=document.getElementById('posterImg'),dica=document.getElementById('dica'),selo=document.getElementById('selo');
-  const box=document.getElementById('modelos');
-  let mv=null;
-  async function existe(url){try{const r=await fetch(url,{method:'HEAD'});return r.ok}catch(e){return false}}
-  async function mostrar(m){
-    document.getElementById('mLinha').textContent=m.linha;
-    document.getElementById('mNome').textContent=m.nome;
-    document.getElementById('mDesc').textContent=m.desc;
-    document.getElementById('mSpecs').innerHTML=m.specs.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join('');
-    box.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.id===m.id));
-    if(await existe(m.glb)){
-      if(!mv){mv=document.createElement('model-viewer');mv.setAttribute('camera-controls','');mv.setAttribute('auto-rotate','');mv.setAttribute('shadow-intensity','1');mv.setAttribute('exposure','1.05');mv.setAttribute('environment-image','neutral');mv.setAttribute('camera-orbit','35deg 70deg auto');mv.setAttribute('interaction-prompt','none');palco.appendChild(mv)}
-      mv.src=m.glb;mv.alt='Modelo 3D: '+m.nome;mv.hidden=false;poster.hidden=true;dica.hidden=false;selo.textContent='3D · interativo';
-    }else{
-      if(mv)mv.hidden=true;poster.hidden=false;posterImg.src=m.thumb;posterImg.alt=m.nome;dica.hidden=true;selo.textContent='3D em breve';
-    }
+</script>
+<script type="module">
+  import { MODELOS, criarVisualizador } from './viewer3d.js';
+  const palco = document.getElementById('palco'), poster = document.getElementById('poster'), dica = document.getElementById('dica'), selo = document.getElementById('selo'), box = document.getElementById('modelos');
+  let v = null;
+  try { v = criarVisualizador(palco); poster.hidden = true; selo.textContent = '3D · arraste para girar'; dica.textContent = 'Arraste para girar · role para aproximar'; dica.hidden = false; }
+  catch (e) { console.warn('3D indisponível', e); }
+  function mostrar(m) {
+    document.getElementById('mLinha').textContent = m.linha;
+    document.getElementById('mNome').textContent = m.nome;
+    document.getElementById('mDesc').textContent = m.desc;
+    document.getElementById('mSpecs').innerHTML = m.specs.map(([k, x]) => `<div><dt>${k}</dt><dd>${x}</dd></div>`).join('');
+    box.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.id === m.id));
+    if (v) v.mostrar(m); else { poster.hidden = false; document.getElementById('posterImg').src = m.thumb; }
   }
-  MODELOS.forEach((m,i)=>{const b=document.createElement('button');b.dataset.id=m.id;b.setAttribute('aria-label',m.nome);b.innerHTML=`<img src="${m.thumb}" alt="">`;b.onclick=()=>mostrar(m);box.appendChild(b)});
+  MODELOS.forEach(m => { const b = document.createElement('button'); b.dataset.id = m.id; b.setAttribute('aria-label', m.nome); b.innerHTML = `<img src="${m.thumb}" alt="">`; b.onclick = () => mostrar(m); box.appendChild(b); });
   mostrar(MODELOS[0]);
 </script>
 
