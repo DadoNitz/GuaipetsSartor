@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Guaipets — Caminhas para pets 100% em couro</title>
 <meta name="description" content="Caminhas para pets feitas 100% em couro natural com pelo. Longa duração, inibição de odor, fácil limpeza e personalização.">
+<link rel="preload" as="video" href="https://d2ol7oe51mr4n9.cloudfront.net/user_3Fl1LEZFXzzsah8SKDLWeAM5ZmC/b4e01593-0be9-45ea-97be-c6848717379b.mp4" media="(min-width: 801px)">
 <link rel="icon" href="img/logo-icone.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -77,6 +78,7 @@ header .btn{padding:.7rem 1.1rem}
 .prod-head h2{font-weight:400;font-size:clamp(2rem,4.4vw,3.8rem);line-height:1.05;margin-top:1rem}
 .prod-cena{perspective:1400px;width:min(56vw,680px);aspect-ratio:1;position:relative;margin-top:8vh}
 .prod-cama{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
+.prod-cama video{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
 .prod-cama img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;-webkit-mask-image:radial-gradient(ellipse 62% 48% at 50% 54%,#000 62%,transparent 100%);mask-image:radial-gradient(ellipse 62% 48% at 50% 54%,#000 62%,transparent 100%)}
 .prod-sombra{position:absolute;left:12%;right:12%;bottom:22%;height:12%;background:radial-gradient(ellipse,rgba(78,46,39,.28),transparent 70%);filter:blur(10px)}
 .benef{position:absolute;width:min(23vw,280px);opacity:0;z-index:3}
@@ -120,7 +122,7 @@ header .btn{padding:.7rem 1.1rem}
 /* 6 CENA FINAL + LOGO REVEAL */
 #cena{height:620vh;background:#000}
 .cena-midia{position:absolute;inset:0}
-.cena-midia img,.cena-midia canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform,opacity}
+.cena-midia video,.cena-midia img,.cena-midia canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform,opacity}
 #cenaB{opacity:0}
 #cenaCanvas{display:none}
 .cena-escuro{position:absolute;inset:0;background:var(--marrom-2);opacity:0}
@@ -211,7 +213,7 @@ footer{background:var(--marrom-2);color:var(--creme);padding:16vh 6vw 40px}
     </div>
     <div class="prod-cena">
       <div class="prod-sombra"></div>
-      <div class="prod-cama" id="prodCama"><img src="img/pele-patchwork.jpg" alt="Caminha retangular de couro em patchwork"></div>
+      <div class="prod-cama" id="prodCama"><img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3Fl1LEZFXzzsah8SKDLWeAM5ZmC/d2a086c9-93b6-4956-a2c3-3afb039def7b.jpg" alt="Caminha retangular de couro em patchwork"></div>
     </div>
     <div class="benef b1"><i>01</i><h3>Longa duração</h3><p>Couro natural resiste às mordidas que destroem o tecido.</p></div>
     <div class="benef b2"><i>02</i><h3>Inibição de odor</h3><p>Voltou da praia ou da piscina? O cheiro não fica.</p></div>
@@ -255,8 +257,8 @@ footer{background:var(--marrom-2);color:var(--creme);padding:16vh 6vw 40px}
   <div class="palco">
     <div class="cena-midia">
       <!-- Provisório: duas fotos em crossfade. Quando o vídeo do Higgsfield chegar, os quadros entram no canvas (ver SEQUENCIA no script). -->
-      <img id="cenaA" src="img/cama-patchwork.jpg" alt="">
-      <img id="cenaB" src="img/poltrona.jpg" alt="">
+      <img id="cenaA" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3Fl1LEZFXzzsah8SKDLWeAM5ZmC/f685ee9c-09f0-494c-a4ee-e261fff2fbf7.jpg" alt="">
+      <img id="cenaB" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3Fl1LEZFXzzsah8SKDLWeAM5ZmC/3a7bc05e-03eb-4370-a163-52cb9b6c3bb5.jpg" alt="">
       <canvas id="cenaCanvas"></canvas>
     </div>
     <div class="cena-legenda" id="cenaLegenda"><span class="eyebrow am">Em todos os ambientes</span><p>Feita para combinar com a sua casa e para ter o seu pet por perto.</p></div>

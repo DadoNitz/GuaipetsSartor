@@ -148,7 +148,7 @@
 
   /* MANIFESTO */
   .manifesto{position:relative;color:#fff;text-align:center;padding:clamp(120px,16vw,210px) 0;overflow:hidden}
-  .manifesto>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.42)}
+  .manifesto>video,.manifesto>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.42)}
   .manifesto .wrap{position:relative;max-width:900px}
   .manifesto blockquote{font-size:clamp(1.4rem,2.6vw,2.1rem);line-height:1.45;font-weight:300}
   .manifesto blockquote b{color:var(--amarelo);font-weight:400}
@@ -267,7 +267,7 @@
       <div class="viewer revela">
         <div class="palco" id="palco">
           <span class="selo-3d" id="selo">3D · interativo</span>
-          <div class="poster" id="poster"><img id="posterImg" src="img/pele-patchwork.jpg" alt=""></div>
+          <div class="poster" id="poster"><img id="posterImg" src="https://d2ol7oe51mr4n9.cloudfront.net/user_3Fl1LEZFXzzsah8SKDLWeAM5ZmC/d2a086c9-93b6-4956-a2c3-3afb039def7b.jpg" alt=""></div>
           <span class="dica" id="dica">Arraste para girar</span>
         </div>
         <aside class="painel">
@@ -330,7 +330,7 @@
   </section>
 
   <section class="manifesto">
-    <img src="img/poltrona.jpg" alt="">
+    <video src="https://d2ol7oe51mr4n9.cloudfront.net/user_3Fl1LEZFXzzsah8SKDLWeAM5ZmC/4d64ecb8-7f7d-4a9a-bd69-4aa2e50b5538.mp4" poster="https://d2ol7oe51mr4n9.cloudfront.net/user_3Fl1LEZFXzzsah8SKDLWeAM5ZmC/3a7bc05e-03eb-4370-a163-52cb9b6c3bb5.jpg" autoplay muted loop playsinline aria-hidden="true"></video>
     <div class="wrap revela">
       <span class="eyebrow claro">Manifesto</span>
       <blockquote style="margin-top:1.6rem">“Nossos pets merecem o melhor e devem estar presentes em todas as ocasiões. A Guaipets nasceu pra isso: para conectar as experiências mais felizes das pessoas com seus melhores amigos, colocando os pets no seu devido lugar: <b>ao nosso lado.</b>”</blockquote>
@@ -369,9 +369,9 @@
 
   // Coleção 3D: cada item aponta para um .glb em models/. Sem o arquivo, mostra a foto.
   const MODELOS=[
-    {id:'patchwork',linha:'Linha Trabalhada',nome:'Retangular Patchwork',glb:'models/retangular-patchwork.glb',thumb:'img/pele-patchwork.jpg',desc:'Recortes de couro malhado em chevron, borda debruada e almofada central em couro preto.',specs:[['Formato','Retangular'],['Acabamento','Patchwork'],['Pele','Malhada natural']]},
-    {id:'redonda',linha:'Linha Trabalhada',nome:'Redonda Chevron',glb:'models/redonda-chevron.glb',thumb:'img/pele-redonda.jpg',desc:'Formato ninho, laterais altas em patchwork chevron preto e branco para o pet se enrolar.',specs:[['Formato','Redonda'],['Acabamento','Patchwork chevron'],['Pele','Preto e branco']]},
-    {id:'laranja',linha:'Linha Tingida',nome:'Retangular Laranja',glb:'models/retangular-laranja.glb',thumb:'img/laranja-detalhe.jpg',desc:'Pelo longo com tingimento laranja intenso e debrum em couro marinho.',specs:[['Formato','Retangular'],['Acabamento','Liso'],['Pele','Tingimento especial']]},
+    {id:'patchwork',linha:'Linha Trabalhada',nome:'Retangular Patchwork',glb:'models/retangular-patchwork.glb',thumb:'https://d2ol7oe51mr4n9.cloudfront.net/user_3Fl1LEZFXzzsah8SKDLWeAM5ZmC/d2a086c9-93b6-4956-a2c3-3afb039def7b.jpg',desc:'Recortes de couro malhado em chevron, borda debruada e almofada central em couro preto.',specs:[['Formato','Retangular'],['Acabamento','Patchwork'],['Pele','Malhada natural']]},
+    {id:'redonda',linha:'Linha Trabalhada',nome:'Redonda Chevron',glb:'models/redonda-chevron.glb',thumb:'https://d2ol7oe51mr4n9.cloudfront.net/user_3Fl1LEZFXzzsah8SKDLWeAM5ZmC/c7b735d1-df32-4304-be35-6da092be9d0d.jpg',desc:'Formato ninho, laterais altas em patchwork chevron preto e branco para o pet se enrolar.',specs:[['Formato','Redonda'],['Acabamento','Patchwork chevron'],['Pele','Preto e branco']]},
+    {id:'laranja',linha:'Linha Tingida',nome:'Retangular Laranja',glb:'models/retangular-laranja.glb',thumb:'https://d2ol7oe51mr4n9.cloudfront.net/user_3Fl1LEZFXzzsah8SKDLWeAM5ZmC/842faed1-dffc-4981-835a-6e4b980607f0.jpg',desc:'Pelo longo com tingimento laranja intenso e debrum em couro marinho.',specs:[['Formato','Retangular'],['Acabamento','Liso'],['Pele','Tingimento especial']]},
     {id:'preta',linha:'Linha Lisa',nome:'Retangular Preta',glb:'models/retangular-preta.glb',thumb:'img/cama-preta.jpg',desc:'Pelo preto natural, sóbria e elegante, para qualquer ambiente.',specs:[['Formato','Retangular'],['Acabamento','Liso'],['Pele','Preta natural']]},
     {id:'cinza',linha:'Linha Lisa',nome:'Retangular Cinza',glb:'models/retangular-cinza.glb',thumb:'img/pele-cinza.jpg',desc:'Pelo curto cinza mesclado, discreta e fácil de combinar.',specs:[['Formato','Retangular'],['Acabamento','Liso'],['Pele','Cinza natural']]},
     {id:'verde',linha:'Linha Tingida',nome:'Retangular Verde',glb:'models/retangular-verde.glb',thumb:'img/pele-verde.jpg',desc:'Pelo longo tingido em verde profundo com debrum em couro escuro.',specs:[['Formato','Retangular'],['Acabamento','Liso'],['Pele','Tingimento especial']]},
@@ -421,7 +421,7 @@
   ScrollTrigger.batch('.revela',{start:'top 88%',onEnter:b=>gsap.from(b,{y:50,opacity:0,duration:1.1,ease:'power3.out',stagger:.12,overwrite:true}),once:true});
   // parallax nas fotos
   document.querySelectorAll('.historia-fotos img,.nolah-img img,.galeria-grid img').forEach(img=>gsap.fromTo(img,{yPercent:-5,scale:1.1},{yPercent:5,scale:1.1,ease:'none',scrollTrigger:{trigger:img,start:'top bottom',end:'bottom top',scrub:true}}));
-  gsap.fromTo('.manifesto>img',{yPercent:-12,scale:1.2},{yPercent:12,scale:1.2,ease:'none',scrollTrigger:{trigger:'.manifesto',start:'top bottom',end:'bottom top',scrub:true}});
+  gsap.fromTo('.manifesto>video',{yPercent:-12,scale:1.2},{yPercent:12,scale:1.2,ease:'none',scrollTrigger:{trigger:'.manifesto',start:'top bottom',end:'bottom top',scrub:true}});
   // benefícios em cascata
   gsap.from('.beneficio',{y:30,opacity:0,duration:.8,stagger:.08,ease:'power2.out',scrollTrigger:{trigger:'.beneficios',start:'top 80%'}});
   // botões magnéticos
