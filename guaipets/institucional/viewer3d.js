@@ -7,6 +7,8 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 const CDN = 'https://d2ol7oe51mr4n9.cloudfront.net/user_3Fl1LEZFXzzsah8SKDLWeAM5ZmC/';
+/* Texturas contínuas geradas no Higgsfield a partir das fotos reais; sem URL, usa o recorte local em tex/ */
+const TEXTURAS = {};
 export const MODELOS = [
   { id: 'patchwork', forma: 'ret', pele: 'patchwork', rep: 0.8, debrum: 0x2a211d, linha: 'Linha Trabalhada', nome: 'Retangular Patchwork', glb: 'models/retangular-patchwork.glb', thumb: CDN + 'd2a086c9-93b6-4956-a2c3-3afb039def7b.jpg', desc: 'Recortes de couro malhado em chevron, borda debruada e almofada central em couro preto.', specs: [['Formato', 'Retangular'], ['Acabamento', 'Patchwork'], ['Pele', 'Malhada natural']] },
   { id: 'redonda', forma: 'red', pele: 'chevron', rep: 2.2, debrum: 0x161414, linha: 'Linha Trabalhada', nome: 'Redonda Chevron', glb: 'models/redonda-chevron.glb', thumb: CDN + 'c7b735d1-df32-4304-be35-6da092be9d0d.jpg', desc: 'Formato ninho, laterais altas em patchwork chevron preto e branco para o pet se enrolar.', specs: [['Formato', 'Redonda'], ['Acabamento', 'Patchwork chevron'], ['Pele', 'Preto e branco']] },
@@ -32,7 +34,7 @@ export function criarVisualizador(palco) {
   scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
 
   const camera = new THREE.PerspectiveCamera(32, 1, 0.05, 50);
-  camera.position.set(1.9, 1.35, 2.2);
+  camera.position.set(1.35, 1.0, 1.6);
 
   scene.add(new THREE.HemisphereLight(0xfff6ea, 0x8a7360, 0.55));
   const sol = new THREE.DirectionalLight(0xffffff, 2.2);
@@ -50,18 +52,18 @@ export function criarVisualizador(palco) {
 
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true; controls.dampingFactor = 0.08;
-  controls.target.set(0, 0.14, 0);
-  controls.minDistance = 1.2; controls.maxDistance = 4.5;
+  controls.target.set(0, 0.12, 0);
+  controls.minDistance = 0.9; controls.maxDistance = 4.5;
   controls.maxPolarAngle = Math.PI / 2.08; controls.enablePan = false;
   controls.autoRotate = true; controls.autoRotateSpeed = 1.1;
   controls.addEventListener('start', () => { controls.autoRotate = false; clearTimeout(volta); });
   let volta; controls.addEventListener('end', () => { volta = setTimeout(() => controls.autoRotate = true, 4000); });
 
-  const loader = new THREE.TextureLoader(), cache = {};
+  const loader = new THREE.TextureLoader().setCrossOrigin('anonymous'), cache = {};
   function tex(nome, rep = 1) {
     const k = nome + '@' + rep;
     if (cache[k]) return cache[k];
-    const c = loader.load('tex/' + nome + '.jpg');
+    const c = loader.load(TEXTURAS[nome] || ('tex/' + nome + '.jpg'));
     c.colorSpace = THREE.SRGBColorSpace; c.wrapS = c.wrapT = THREE.MirroredRepeatWrapping;
     c.repeat.set(rep, 1); c.anisotropy = 8; return (cache[k] = c);
   }
