@@ -82,34 +82,81 @@ export function criarVisualizador(palco) {
   }
   function sombra(o) { o.traverse(c => { if (c.isMesh) { c.castShadow = true; c.receiveShadow = true; } }); return o; }
 
-  function camaRetangular(m) {
-    const g = new THREE.Group(), L = 1.15, W = 0.82, R = 0.105, ESC_Y = 1.3;
-    const lado = { ...m, rep: m.rep * 0.6 };
-    // base acolchoada
-    const base = new THREE.Mesh(new THREE.ExtrudeGeometry(retArredondado(L - 0.05, W - 0.05, 0.15), { depth: 0.05, bevelEnabled: true, bevelThickness: 0.025, bevelSize: 0.025, bevelSegments: 4, curveSegments: 24 }), pelo(lado));
-    base.rotation.x = -Math.PI / 2; base.position.y = 0.025; g.add(base);
-    // borda (bolster) com seção oval
-    const yRim = 0.07 + R * ESC_Y;
-    const rimPath = caminho(L - 2 * R, W - 2 * R, 0.1, 0);
-    const rim = new THREE.Mesh(new THREE.TubeGeometry(rimPath, 280, R, 32, true), pelo(m));
-    rim.scale.set(1, ESC_Y, 1); rim.position.y = yRim; g.add(rim);
-    // debruns
-    g.add(new THREE.Mesh(new THREE.TubeGeometry(caminho(L - 2 * R, W - 2 * R, 0.1, yRim + R * ESC_Y * 0.97), 280, 0.009, 8, true), debrum(m.debrum)));
-    g.add(new THREE.Mesh(new THREE.TubeGeometry(caminho(L - 0.03, W - 0.03, 0.15, 0.028), 280, 0.01, 8, true), debrum(m.debrum)));
-    // almofada central em couro, levemente estufada
-    const alm = new THREE.Mesh(new THREE.ExtrudeGeometry(retArredondado(L - 4 * R - 0.02, W - 4 * R - 0.02, 0.07), { depth: 0.02, bevelEnabled: true, bevelThickness: 0.045, bevelSize: 0.05, bevelSegments: 8, curveSegments: 24 }), couro());
-    alm.rotation.x = -Math.PI / 2; alm.position.y = 0.105; g.add(alm);
+  /* Perfil da borda (n = para fora do contorno, y = altura), varrido ao longo do contorno da cama */
+  const PERFIL = new THREE.SplineCurve([
+    [-0.115, 0.075], [-0.125, 0.15], [-0.115, 0.24], [-0.075, 0.305], [0, 0.325], [0.075, 0.3],
+    [0.11, 0.23], [0.12, 0.13], [0.105, 0.04], [0.075, 0.0]
+  ].map(([x, y]) => new THREE.Vector2(x, y))).getSpacedPoints(48);
+
+  function contornoRet(L, W, r, n = 320) {
+    return retArredondado(L, W, r).getSpacedPoints(n).slice(0, -1);
+  }
+  function contornoCirc(R, n = 320) {
+    return Array.from({ length: n }, (_, i) => { const a = i / n * Math.PI * 2; return new THREE.Vector2(Math.cos(a) * R, Math.sin(a) * R); });
+  }
+  function varrer(pts, perfil, repU, escala = 1) {
+    const N = pts.length, M = perfil.length, pos = [], uv = [], idx = [];
+    let total = 0; const acc = [0];
+    for (let i = 1; i <= N; i++) { total += pts[i % N].distanceTo(pts[i - 1]); acc.push(total); }
+    let perim = 0; const accV = [0];
+    for (let j = 1; j < M; j++) { perim += perfil[j].distanceTo(perfil[j - 1]); accV.push(perim); }
+    for (let i = 0; i <= N; i++) {
+      const p = pts[i % N], prev = pts[(i - 1 + N) % N], next = pts[(i + 1) % N];
+      const t = new THREE.Vector2().subVectors(next, prev).normalize();
+      let nx = t.y, nz = -t.x; if (nx * p.x + nz * p.y < 0) { nx = -nx; nz = -nz; }
+      for (let j = 0; j < M; j++) {
+        const q = perfil[j];
+        pos.push(p.x + nx * q.x * escala, q.y * escala, p.y + nz * q.x * escala);
+        uv.push(acc[i] / total * repU, accV[j] / perim);
+      }
+    }
+    for (let i = 0; i < N; i++) for (let j = 0; j < M - 1; j++) {
+      const a = i * M + j, b2 = (i + 1) * M + j;
+      idx.push(a, b2, a + 1, b2, b2 + 1, a + 1);
+    }
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+    g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
+    g.setIndex(idx); g.computeVertexNormals();
+    // garante normais para fora
+    const tri = new THREE.Triangle(), n = new THREE.Vector3(), c = new THREE.Vector3();
+    tri.setFromAttributeAndIndices(g.attributes.position, idx[0], idx[1], idx[2]); tri.getNormal(n); tri.getMidpoint(c);
+    if (n.y < 0 && c.y > 0.07) { g.index.array.reverse(); g.computeVertexNormals(); }
+    return g;
+  }
+  function tuboContorno(pts, offN, y, raio, cor) {
+    const v3 = pts.map((p, i) => {
+      const prev = pts[(i - 1 + pts.length) % pts.length], next = pts[(i + 1) % pts.length];
+      const t = new THREE.Vector2().subVectors(next, prev).normalize();
+      let nx = t.y, nz = -t.x; if (nx * p.x + nz * p.y < 0) { nx = -nx; nz = -nz; }
+      return new THREE.Vector3(p.x + nx * offN, y, p.y + nz * offN);
+    });
+    return new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(v3, true), 400, raio, 8, true), debrum(cor));
+  }
+  function montar(m, pts, fundo, almofada) {
+    const g = new THREE.Group();
+    const mat = pelo(m); mat.side = THREE.DoubleSide;
+    g.add(new THREE.Mesh(varrer(pts, PERFIL, m.rep), mat));
+    g.add(tuboContorno(pts, 0.088, 0.292, 0.009, m.debrum));
+    g.add(tuboContorno(pts, 0.078, 0.006, 0.009, m.debrum));
+    const chaoCama = new THREE.Mesh(fundo, pelo({ ...m, rep: 1 })); chaoCama.rotation.x = -Math.PI / 2; chaoCama.position.y = 0.002; g.add(chaoCama);
+    const alm = new THREE.Mesh(almofada, couro()); alm.rotation.x = -Math.PI / 2; alm.position.y = 0.03; g.add(alm);
     return sombra(g);
   }
+  function camaRetangular(m) {
+    const L = 1.15, W = 0.84, c = 0.12, pts = contornoRet(L - 2 * c, W - 2 * c, 0.15);
+    const fundo = new THREE.ShapeGeometry(retArredondado(L - 0.1, W - 0.1, 0.2), 24);
+    const ai = 2 * c + 0.25, alm = new THREE.ExtrudeGeometry(retArredondado(L - ai, W - ai, 0.06), { depth: 0.03, bevelEnabled: true, bevelThickness: 0.05, bevelSize: 0.045, bevelSegments: 8, curveSegments: 24 });
+    return montar(m, pts, fundo, alm);
+  }
   function camaRedonda(m) {
-    const g = new THREE.Group();
-    const base = new THREE.Mesh(new THREE.CylinderGeometry(0.56, 0.58, 0.08, 96), pelo({ ...m, rep: 1 })); base.position.y = 0.04; g.add(base);
-    const rim = new THREE.Mesh(new THREE.TorusGeometry(0.43, 0.15, 48, 180), pelo(m));
-    rim.rotation.x = Math.PI / 2; rim.scale.set(1, 1, 1.35); rim.position.y = 0.2; g.add(rim);
-    g.add(new THREE.Mesh(new THREE.TorusGeometry(0.43, 0.008, 8, 180).rotateX(Math.PI / 2).translate(0, 0.2 + 0.15 * 1.35 * 0.98, 0), debrum(m.debrum)));
-    const alm = new THREE.Mesh(new THREE.CylinderGeometry(0.29, 0.31, 0.09, 72), couro()); alm.position.y = 0.11; g.add(alm);
-    const top = new THREE.Mesh(new THREE.SphereGeometry(0.3, 48, 16, 0, Math.PI * 2, 0, Math.PI / 2), couro()); top.scale.y = 0.15; top.position.y = 0.155; g.add(top);
-    return sombra(g);
+    const pts = contornoCirc(0.44);
+    const fundo = new THREE.CircleGeometry(0.52, 96);
+    const s = new THREE.Shape(); s.absarc(0, 0, 0.27, 0, Math.PI * 2);
+    const alm = new THREE.ExtrudeGeometry(s, { depth: 0.03, bevelEnabled: true, bevelThickness: 0.05, bevelSize: 0.045, bevelSegments: 8, curveSegments: 64 });
+    const g = montar(m, pts, fundo, alm);
+    g.children[0].scale.set(1, 1.18, 1); g.children[1].position.y = 0.292 * 0.18;
+    return g;
   }
 
   let atual = null, ativo = true;
