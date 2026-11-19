@@ -42,6 +42,8 @@ header .btn{padding:.7rem 1.1rem}
 #hero .palco{display:flex;align-items:center;justify-content:center}
 .hero-titulo{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;z-index:2;width:90vw}
 .hero-titulo h1{font-weight:400;font-size:clamp(2.6rem,7vw,6.2rem);line-height:1.02;letter-spacing:-.02em;margin-top:1.2rem}
+.hero-titulo h1 .hl{display:block;will-change:transform}
+.hero-titulo{mix-blend-mode:multiply}
 .hero-titulo h1 em{font-style:normal;color:#E5A500}
 .hero-foto{position:absolute;left:50%;top:50%;width:26vw;height:38vw;transform:translate(-50%,-50%);overflow:hidden;z-index:1;will-change:width,height,border-radius}
 .hero-foto img{width:100%;height:100%;object-fit:cover;object-position:50% 35%}
@@ -78,7 +80,9 @@ header .btn{padding:.7rem 1.1rem}
 .prod-head h2{font-weight:400;font-size:clamp(2rem,4.4vw,3.8rem);line-height:1.05;margin-top:1rem}
 .prod-cena{perspective:1400px;width:min(56vw,680px);aspect-ratio:1;position:relative;margin-top:8vh}
 .prod-cama{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
-.prod-cama video{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;filter:brightness(1.06) saturate(1.02);-webkit-mask-image:radial-gradient(ellipse 46% 40% at 50% 52%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 46% 40% at 50% 52%,#000 55%,transparent 100%)}
+.prod-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+#produto .palco.com-video::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 60% 55% at 50% 58%,transparent 55%,#F6F1EB 100%),linear-gradient(#F6F1EB,transparent 22%,transparent 85%,#F6F1EB)}
+#produto .prod-head{z-index:2}
 .prod-cama img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;-webkit-mask-image:radial-gradient(ellipse 62% 48% at 50% 54%,#000 62%,transparent 100%);mask-image:radial-gradient(ellipse 62% 48% at 50% 54%,#000 62%,transparent 100%)}
 .prod-sombra{position:absolute;left:12%;right:12%;bottom:22%;height:12%;background:radial-gradient(ellipse,rgba(78,46,39,.28),transparent 70%);filter:blur(10px)}
 .benef{position:absolute;width:min(23vw,280px);opacity:0;z-index:3}
@@ -170,7 +174,7 @@ footer{background:var(--marrom-2);color:var(--creme);padding:16vh 6vw 40px}
   <div class="palco">
     <div class="hero-titulo" id="heroTitulo">
       <span class="eyebrow">Pet accessories · Novo Hamburgo, RS</span>
-      <h1>Caminhas para pets<br><em>100% em couro.</em></h1>
+      <h1><span class="hl" id="heroL1">Caminhas para pets</span><span class="hl" id="heroL2"><em>100% em couro.</em></span></h1>
     </div>
     <div class="hero-foto" id="heroFoto">
       <img src="img/hero.jpg" alt="Eduardo, fundador da Guaipets, com a Nolah no colo e uma caminha de couro aos pés">

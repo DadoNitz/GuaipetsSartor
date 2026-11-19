@@ -12,7 +12,7 @@ const SEQUENCIA = { pasta: 'frames/cena/', ext: '.webp', total: 0, digitos: 4 };
 const VIDEO_CENA = matchMedia('(max-width: 800px)').matches
   ? 'https://d2ol7oe51mr4n9.cloudfront.net/user_3Fl1LEZFXzzsah8SKDLWeAM5ZmC/4d64ecb8-7f7d-4a9a-bd69-4aa2e50b5538.mp4'
   : 'https://d2ol7oe51mr4n9.cloudfront.net/user_3Fl1LEZFXzzsah8SKDLWeAM5ZmC/b4e01593-0be9-45ea-97be-c6848717379b.mp4';
-const VIDEO_PRODUTO = 'https://d2ol7oe51mr4n9.cloudfront.net/user_3Fl1LEZFXzzsah8SKDLWeAM5ZmC/f24c6421-c193-4be9-ab80-611f1c2f7de4.mp4';
+const VIDEO_PRODUTO = 'https://d2ol7oe51mr4n9.cloudfront.net/user_3Fl1LEZFXzzsah8SKDLWeAM5ZmC/2b10976e-c410-4594-9975-eaaae5ffc89c.mp4';
 
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
@@ -61,7 +61,10 @@ function iniciar() {
     });
     const tl = gsap.timeline({ scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom bottom', scrub: 1, invalidateOnRefresh: true } });
     tl.to('#rolar', { autoAlpha: 0, duration: .08 }, 0)
-      .to('#heroTitulo', { yPercent: -80, autoAlpha: 0, duration: .32, ease: 'power2.in' }, 0)
+      .to('#heroL1', { x: () => -innerWidth * .6, duration: .4, ease: 'power2.in' }, 0)
+      .to('#heroL2', { x: () => innerWidth * .6, duration: .4, ease: 'power2.in' }, 0)
+      .to('#heroTitulo .eyebrow', { autoAlpha: 0, duration: .12 }, 0)
+      .to('#heroTitulo', { autoAlpha: 0, duration: .1 }, .32)
       .to(foto, { top: () => innerHeight * .5, duration: .35, ease: 'power2.out' }, 0)
       .to(foto, { width: () => innerWidth, height: () => innerHeight, duration: .3, ease: 'power2.inOut' }, .3)
       .fromTo('#heroFoto img', { scale: 1.18 }, { scale: 1, duration: .65, ease: 'none' }, 0)
@@ -73,7 +76,7 @@ function iniciar() {
 
   /* título do hero entra letra a letra ao carregar */
   if (window.SplitText && !reduz) {
-    const st = new SplitText('#heroTitulo h1', { type: 'lines,chars', linesClass: 'linha' });
+    const st = new SplitText('#heroTitulo h1 .hl', { type: 'chars' });
     gsap.from(st.chars, { yPercent: 110, opacity: 0, duration: 1, ease: 'expo.out', stagger: .018, delay: .15 });
     gsap.from('#heroTitulo .eyebrow', { y: 12, opacity: 0, duration: .8, delay: .1 });
   }
@@ -98,7 +101,7 @@ function iniciar() {
   mm.add({ desk: '(min-width: 801px)', mob: '(max-width: 800px)' }, ctx => {
     const tp = gsap.timeline({ scrollTrigger: { trigger: '#produto', start: 'top top', end: 'bottom bottom', scrub: 1 } });
     if (!VIDEO_PRODUTO) tp.fromTo('#prodCama', { rotateY: -22, rotateX: 4, scale: .82 }, { rotateY: 22, rotateX: 10, scale: 1.04, duration: 1, ease: 'none' }, 0);
-    else tp.fromTo('#prodCama', { scale: .9 }, { scale: 1.04, duration: 1, ease: 'none' }, 0);
+    else tp.fromTo('.prod-bg', { scale: 1.06 }, { scale: 1, duration: 1, ease: 'none' }, 0);
     if (ctx.conditions.mob) {
       benefs.forEach((b, i) => { const t = .1 + i * .14; tp.to(b, { autoAlpha: 1, y: 0, duration: .05 }, t); if (i < 5) tp.to(b, { autoAlpha: 0, y: -20, duration: .05 }, t + .12); });
     } else {
@@ -143,7 +146,7 @@ function iniciar() {
     const v = document.createElement('video');
     Object.assign(v, { src, muted: true, playsInline: true, preload: 'auto' });
     v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
-    v.className = 'scrub'; alvo.appendChild(v); antes.forEach(el => el.style.display = 'none');
+    v.className = 'scrub'; alvo.prepend(v); antes.forEach(el => el.style.display = 'none');
     v.addEventListener('loadedmetadata', () => { v.pause(); v.currentTime = 0.01; });
     const estado = { t: 0 };
     return { v, estado, aplicar() { if (v.duration) v.currentTime = Math.min(v.duration - 0.05, estado.t * v.duration); } };
@@ -151,8 +154,8 @@ function iniciar() {
   let vc = null;
   if (VIDEO_CENA) vc = videoScrub(VIDEO_CENA, $('.cena-midia'), [$('#cenaA'), $('#cenaB'), canvas]);
   if (VIDEO_PRODUTO) {
-    const vp = videoScrub(VIDEO_PRODUTO, $('.prod-cama'), [$('#prodCama img')]);
-    $('.prod-sombra').style.display = 'none';
+    const vp = videoScrub(VIDEO_PRODUTO, $('#produto .palco'), [$('.prod-cena')]);
+    vp.v.classList.add('prod-bg'); $('#produto .palco').classList.add('com-video');
     gsap.to(vp.estado, { t: 1, ease: 'none', onUpdate: vp.aplicar, scrollTrigger: { trigger: '#produto', start: 'top top', end: 'bottom bottom', scrub: .6 } });
   }
 

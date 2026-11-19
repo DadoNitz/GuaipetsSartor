@@ -156,13 +156,13 @@ export function criarVisualizador(palco) {
   function camaRetangular(m) {
     const L = 1.15, W = 0.84, c = 0.12, pts = contornoRet(L - 2 * c, W - 2 * c, 0.15);
     const fundo = new THREE.ShapeGeometry(retArredondado(L - 0.1, W - 0.1, 0.2), 24);
-    const ai = 2 * c + 0.25, alm = new THREE.ExtrudeGeometry(retArredondado(L - ai, W - ai, 0.06), { depth: 0.03, bevelEnabled: true, bevelThickness: 0.05, bevelSize: 0.045, bevelSegments: 8, curveSegments: 24 });
+    const ai = 2 * c + 0.12, alm = new THREE.ExtrudeGeometry(retArredondado(L - ai, W - ai, 0.06), { depth: 0.03, bevelEnabled: true, bevelThickness: 0.06, bevelSize: 0.05, bevelSegments: 8, curveSegments: 24 });
     return montar(m, pts, fundo, alm);
   }
   function camaRedonda(m) {
     const pts = contornoCirc(0.44);
     const fundo = new THREE.CircleGeometry(0.52, 96);
-    const s = new THREE.Shape(); s.absarc(0, 0, 0.27, 0, Math.PI * 2);
+    const s = new THREE.Shape(); s.absarc(0, 0, 0.3, 0, Math.PI * 2);
     const alm = new THREE.ExtrudeGeometry(s, { depth: 0.03, bevelEnabled: true, bevelThickness: 0.05, bevelSize: 0.045, bevelSegments: 8, curveSegments: 64 });
     const g = montar(m, pts, fundo, alm);
     g.children[0].scale.set(1, 1.18, 1); g.children[1].position.y = 0.292 * 0.18;
