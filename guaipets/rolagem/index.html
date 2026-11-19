@@ -8,6 +8,7 @@
 <link rel="icon" href="img/logo-icone.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.css">
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500&family=Space+Mono:wght@400;700&family=Allura&display=swap" rel="stylesheet">
 <style>
 :root{--amarelo:#F8B500;--marrom:#4E2E27;--marrom-2:#2E1A16;--cafe:#6B4337;--creme:#F6F1EB;--creme-2:#EDE5DB;--areia:#D9CBBB;--suave:#7C6459}
@@ -55,18 +56,18 @@ header .btn{padding:.7rem 1.1rem}
 #historia{height:420vh;background:var(--marrom-2);color:var(--creme)}
 #historia .palco{display:grid;grid-template-columns:1fr 1fr;align-items:center}
 .hist-foto{position:relative;height:100%;overflow:hidden}
-.hist-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05);opacity:0;transition:opacity .6s}
-.hist-foto img.on{opacity:1}
+.hist-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05);opacity:0}
+
 .hist-txt{padding:0 7vw;position:relative;height:60vh}
-.hist-passo{position:absolute;inset:0 7vw;display:flex;flex-direction:column;justify-content:center;opacity:0;transform:translateY(30px);transition:opacity .6s,transform .6s}
-.hist-passo.on{opacity:1;transform:none}
+.hist-passo{position:absolute;inset:0 7vw;display:flex;flex-direction:column;justify-content:center;opacity:0}
+
 .hist-passo h2{font-weight:400;font-size:clamp(2.2rem,4.6vw,4.2rem);line-height:1.05;margin:1rem 0 1.4rem;color:var(--creme)}
 .hist-passo h2 s{text-decoration-color:var(--amarelo);text-decoration-thickness:4px;color:var(--areia)}
 .hist-passo p{color:var(--areia);font-size:1.1rem;max-width:30rem}
 .hist-passo .num{font-family:'Space Mono',monospace;font-size:clamp(5rem,12vw,10rem);line-height:1;color:var(--amarelo)}
 .hist-dots{position:absolute;left:7vw;bottom:12vh;display:flex;gap:8px}
-.hist-dots i{width:26px;height:2px;background:rgba(246,241,235,.25);transition:.4s}
-.hist-dots i.on{background:var(--amarelo)}
+.hist-dots i{width:26px;height:2px;background:rgba(246,241,235,.25)}
+
 @media(max-width:800px){.hero-assin{bottom:auto;top:14vh;right:7vw}#historia .palco{grid-template-columns:1fr;grid-template-rows:42vh 1fr}.hist-txt{height:auto}.hist-passo{inset:0 7vw}.hist-dots{bottom:auto;top:46vh}}
 
 /* 3 PRODUTO */
@@ -78,8 +79,8 @@ header .btn{padding:.7rem 1.1rem}
 .prod-cama{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
 .prod-cama img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;-webkit-mask-image:radial-gradient(ellipse 62% 48% at 50% 54%,#000 62%,transparent 100%);mask-image:radial-gradient(ellipse 62% 48% at 50% 54%,#000 62%,transparent 100%)}
 .prod-sombra{position:absolute;left:12%;right:12%;bottom:22%;height:12%;background:radial-gradient(ellipse,rgba(78,46,39,.28),transparent 70%);filter:blur(10px)}
-.benef{position:absolute;width:min(23vw,280px);opacity:0;transform:translateY(24px);transition:opacity .5s,transform .5s;z-index:3}
-.benef.on{opacity:1;transform:none}
+.benef{position:absolute;width:min(23vw,280px);opacity:0;z-index:3}
+
 .benef i{font-style:normal;font-family:'Space Mono',monospace;font-size:.72rem;color:#C98F00}
 .benef h3{font-weight:500;font-size:1.25rem;margin:.35rem 0 .3rem}
 .benef p{font-size:.9rem;color:var(--suave);line-height:1.5}
@@ -113,8 +114,7 @@ header .btn{padding:.7rem 1.1rem}
 .nolah h2{font-weight:400;font-size:clamp(2rem,4vw,3.4rem);line-height:1.08;margin:1rem 0 1.8rem}
 .nolah blockquote{color:var(--suave);font-size:1.12rem;border-left:2px solid var(--amarelo);padding-left:1.5rem;line-height:1.65}
 .nolah blockquote p+p{margin-top:1rem}
-.revela{opacity:0;transform:translateY(30px);transition:opacity 1s,transform 1s}
-.revela.on{opacity:1;transform:none}
+
 @media(max-width:800px){.nolah{grid-template-columns:1fr}}
 
 /* 6 CENA FINAL + LOGO REVEAL */
@@ -149,6 +149,10 @@ footer{background:var(--marrom-2);color:var(--creme);padding:16vh 6vw 40px}
 .rodape{max-width:1240px;margin:12vh auto 0;padding-top:26px;border-top:1px solid rgba(246,241,235,.14);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.8rem;color:var(--areia)}
 @media(max-width:800px){.contato{grid-template-columns:1fr}}
 
+/* sem JS/GSAP: mostra tudo */
+.sem-anim .hist-passo,.sem-anim .hist-foto img:first-child,.sem-anim .benef,.sem-anim #heroSub,.sem-anim #heroAssin,.sem-anim #rIcone,.sem-anim #rTag,.sem-anim #rCta{opacity:1!important;transform:none!important}
+.sem-anim #rNome{clip-path:none!important}
+.linha{overflow:hidden;padding-bottom:.06em}
 @media(prefers-reduced-motion:reduce){.rolar i{animation:none}}
 </style>
 </head>
@@ -286,124 +290,11 @@ footer{background:var(--marrom-2);color:var(--creme);padding:16vh 6vw 40px}
   <div class="rodape"><span>© <span id="ano"></span> Guaipets · Pet accessories</span><span>Novo Hamburgo, RS</span></div>
 </footer>
 
-<script>
-/* ========= Config do vídeo da cena final =========
-   Quando o vídeo do Higgsfield estiver pronto, exporte os quadros
-   (ex.: ffmpeg -i cena.mp4 -vf "scale=1600:-1,fps=30" frames/cena/%04d.webp)
-   e preencha total. Com total = 0, a cena usa as fotos provisórias. */
-const SEQUENCIA = { pasta: 'frames/cena/', ext: '.webp', total: 0, digitos: 4 };
-
-const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
-const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
-const faixa = (p, a, b) => clamp((p - a) / (b - a));            // 0→1 entre a e b
-const ease = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
-const lerp = (a, b, t) => a + (b - a) * t;
-const reduz = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-function progressoDe(el) {
-  const r = el.getBoundingClientRect(), total = el.offsetHeight - innerHeight;
-  return clamp(-r.top / total);
-}
-
-/* ---- sequência de quadros (vídeo controlado pela rolagem) ---- */
-const canvas = $('#cenaCanvas'), ctx = canvas.getContext('2d'), quadros = [];
-if (SEQUENCIA.total > 0) {
-  canvas.style.display = 'block'; $('#cenaA').style.display = $('#cenaB').style.display = 'none';
-  for (let i = 1; i <= SEQUENCIA.total; i++) {
-    const im = new Image(); im.src = SEQUENCIA.pasta + String(i).padStart(SEQUENCIA.digitos, '0') + SEQUENCIA.ext; quadros.push(im);
-  }
-}
-let ultimoQuadro = -1;
-function desenhaQuadro(t) {
-  const i = Math.round(t * (quadros.length - 1)); if (i === ultimoQuadro) return;
-  const im = quadros[i]; if (!im || !im.complete) return;
-  const dpr = Math.min(devicePixelRatio, 2), w = innerWidth * dpr, h = innerHeight * dpr;
-  if (canvas.width !== w) { canvas.width = w; canvas.height = h; }
-  const s = Math.max(w / im.naturalWidth, h / im.naturalHeight), dw = im.naturalWidth * s, dh = im.naturalHeight * s;
-  ctx.drawImage(im, (w - dw) / 2, (h - dh) / 2, dw, dh); ultimoQuadro = i;
-}
-
-/* ---- cenas ---- */
-const hero = $('#hero'), hist = $('#historia'), prod = $('#produto'), peles = $('#peles'), cena = $('#cena');
-const passos = $$('.hist-passo'), fotosHist = $$('.hist-foto img'), dots = $$('.hist-dots i'), benefs = $$('.benef');
-const trilho = $('#trilho'), imgsPele = $$('.pele img');
-
-function quadro() {
-  const vw = innerWidth, vh = innerHeight;
-  $('#progresso').style.width = (scrollY / (document.documentElement.scrollHeight - vh) * 100) + '%';
-
-  /* 1 hero: foto cresce até tela cheia */
-  let p = progressoDe(hero), t = ease(faixa(p, 0, .6));
-  const f = $('#heroFoto'), mob = vw < 800;
-  const w0 = mob ? vw * .62 : vw * .24, h0 = mob ? vh * .5 : Math.min(vw * .34, vh * .62);
-  f.style.width = lerp(w0, vw, t) + 'px'; f.style.height = lerp(h0, vh, t) + 'px';
-  const sobe = ease(faixa(p, 0, .35));
-  f.style.top = lerp(vh * (mob ? .95 : 1.02), vh * .5, sobe) + 'px';
-  $('#heroTitulo').style.opacity = 1 - faixa(p, 0, .3);
-  $('#heroTitulo').style.transform = `translate(-50%, calc(-50% - ${faixa(p, 0, .4) * 120}px))`;
-  $('#heroVeu').style.opacity = faixa(p, .45, .7);
-  $('#heroSub').style.opacity = faixa(p, .6, .8); $('#heroAssin').style.opacity = faixa(p, .7, .9);
-  $('#rolar').style.opacity = 1 - faixa(p, 0, .08);
-  f.querySelector('img').style.transform = `scale(${1.15 - t * .15})`;
-
-  /* 2 história: 4 passos */
-  p = progressoDe(hist); const n = Math.min(3, Math.floor(p * 4 * .999));
-  passos.forEach((el, i) => el.classList.toggle('on', i === n));
-  fotosHist.forEach((el, i) => el.classList.toggle('on', i === n));
-  dots.forEach((el, i) => el.classList.toggle('on', i <= n));
-  if (n === 1) $('#contador').textContent = 1 + Math.min(2, Math.floor(faixa(p, .25, .48) * 3));
-
-  /* 3 produto: cama gira (placeholder do vídeo de órbita) e benefícios entram */
-  p = progressoDe(prod);
-  const rot = lerp(-18, 18, p), inc = Math.sin(p * Math.PI) * 10, esc = lerp(.85, 1.05, ease(faixa(p, 0, .4)));
-  $('#prodCama').style.transform = `rotateX(${inc}deg) rotateY(${rot}deg) scale(${esc})`;
-  benefs.forEach((el, i) => el.classList.toggle('on', mob ? Math.floor(faixa(p, .12, .98) * 6 * .999) === i : p > .12 + i * .13));
-
-  /* 4 peles: trilho horizontal */
-  p = progressoDe(peles);
-  const max = trilho.scrollWidth - vw; trilho.style.transform = `translateX(${-ease(p) * max}px)`;
-  imgsPele.forEach(im => { const r = im.parentElement.getBoundingClientRect(); const c = (r.left + r.width / 2 - vw / 2) / vw; im.style.transform = `scale(1.15) translateX(${c * -40}px)`; });
-
-  /* nolah: leve parallax */
-  const ni = $('#nolahImg'), nr = ni.parentElement.getBoundingClientRect();
-  ni.style.transform = `scale(1.12) translateY(${((nr.top + nr.height / 2) / vh - .5) * -40}px)`;
-
-  /* 6 cena final + logo reveal */
-  p = progressoDe(cena);
-  const pv = faixa(p, 0, .5);                       // trecho do "vídeo"
-  if (quadros.length) desenhaQuadro(pv);
-  else {
-    $('#cenaA').style.transform = `scale(${lerp(1.25, 1.05, ease(faixa(pv, 0, .6)))})`;
-    $('#cenaA').style.opacity = 1 - faixa(pv, .55, .8);
-    $('#cenaB').style.opacity = faixa(pv, .55, .8);
-    $('#cenaB').style.transform = `scale(${lerp(1.12, 1, ease(faixa(pv, .55, 1)))})`;
-  }
-  const leg = faixa(p, .12, .22) - faixa(p, .4, .48); $('#cenaLegenda').style.opacity = leg;
-  $('#cenaLegenda').style.transform = `translateY(${(1 - faixa(p, .12, .22)) * 30}px)`;
-  $('#cenaEscuro').style.opacity = faixa(p, .5, .62) * .92 + faixa(p, .72, .8) * .08;
-  $('#manif').style.opacity = faixa(p, .56, .62) - faixa(p, .68, .73);
-  const ti = ease(faixa(p, .73, .84));
-  $('#rIcone').style.opacity = faixa(p, .73, .77);
-  $('#rIcone').style.transform = `scale(${lerp(.3, 1, ti)}) rotate(${lerp(-200, 0, ti)}deg)`;
-  $('#rNome').style.clipPath = `inset(0 ${100 - ease(faixa(p, .8, .9)) * 100}% 0 0)`;
-  const tg = faixa(p, .88, .94); $('#rTag').style.opacity = tg; $('#rTag').style.transform = `translateY(${(1 - tg) * 20}px)`;
-  const ct = faixa(p, .93, .98); $('#rCta').style.opacity = ct; $('#rCta').style.transform = `translateY(${(1 - ct) * 20}px)`;
-
-  /* header claro sobre fundos escuros */
-  const escuro = [hist, cena, $('#contato')].some(s => { const r = s.getBoundingClientRect(); return r.top < 40 && r.bottom > 40; })
-    || (progressoDe(hero) > .5 && hero.getBoundingClientRect().bottom > 40);
-  $('#topo').classList.toggle('escuro', escuro);
-}
-
-let pedido = false;
-const agenda = () => { if (!pedido) { pedido = true; requestAnimationFrame(() => { pedido = false; quadro(); }); } };
-addEventListener('scroll', agenda, { passive: true }); addEventListener('resize', agenda);
-quadro();
-
-const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } }), { threshold: .15 });
-$$('.revela').forEach(el => io.observe(el));
-$('#ano').textContent = new Date().getFullYear();
-</script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
+<script src="main.js"></script>
 
 <a href="../../" style="position:fixed;left:16px;bottom:16px;z-index:999;display:flex;align-items:center;gap:8px;padding:8px 12px 8px 8px;background:rgba(15,26,46,.88);color:#E8D5A8;font:500 12px/1 system-ui,sans-serif;letter-spacing:.08em;text-decoration:none;border:1px solid rgba(201,164,92,.4);backdrop-filter:blur(8px)" aria-label="Voltar para as apresentações da Sartor"><span style="display:grid;place-items:center;width:22px;height:22px;border:1px solid #C9A45C;font:500 15px/1 'Cormorant Garamond',Georgia,serif;color:#C9A45C">S</span>VOLTAR</a>
 </body>

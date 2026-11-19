@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guaipets — A caminha que dura. 100% couro.</title>
+<meta name="description" content="Caminhas para pets 100% em couro natural com pelo. Resistentes, sem odor e fáceis de limpar. Peça pelo WhatsApp.">
+<link rel="icon" href="img/logo.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&family=Space+Mono:wght@400;700&family=Allura&display=swap" rel="stylesheet">
+<style>
+:root{--amarelo:#F8B500;--amarelo-2:#FFD56A;--marrom:#4E2E27;--marrom-2:#2E1A16;--creme:#F6F1EB;--creme-2:#EDE5DB;--suave:#7C6459}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Lexend',system-ui,sans-serif;font-weight:300;color:var(--marrom);background:var(--creme);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1200px,90vw);margin:0 auto}
+.eyebrow{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:#9A6A1C}
+.linha{overflow:hidden;padding-bottom:.08em}
+
+/* botão com brilho (inspirado em uiverse) */
+.btn{position:relative;display:inline-flex;align-items:center;gap:.7rem;padding:1.05rem 1.7rem;background:var(--marrom);color:var(--creme);font-family:'Space Mono',monospace;font-weight:700;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;border-radius:999px;overflow:hidden;isolation:isolate;box-shadow:0 10px 30px -10px rgba(78,46,39,.55)}
+.btn::before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(120deg,transparent 30%,rgba(255,213,106,.55) 50%,transparent 70%);transform:translateX(-120%);transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.btn:hover::before{transform:translateX(120%)}
+.btn .seta{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--amarelo);color:var(--marrom-2);font-size:.9rem;transition:transform .35s}
+.btn:hover .seta{transform:rotate(-45deg)}
+.btn.am{background:var(--amarelo);color:var(--marrom-2)}.btn.am .seta{background:var(--marrom);color:var(--amarelo)}
+.btn-linha{padding:1.05rem 1.4rem;border:1px solid rgba(78,46,39,.25);border-radius:999px;font-family:'Space Mono',monospace;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;transition:.3s}
+.btn-linha:hover{background:var(--marrom);color:var(--creme)}
+
+/* nav */
+header{position:fixed;inset:16px 0 auto;z-index:50}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:10px 10px 10px 22px;background:rgba(246,241,235,.78);backdrop-filter:blur(14px);border:1px solid rgba(78,46,39,.08);border-radius:999px}
+.nav img{height:30px;width:auto}
+.nav .btn{padding:.7rem 1.1rem;font-size:.7rem}
+
+/* hero */
+.hero{min-height:100svh;display:grid;grid-template-columns:1.05fr 1fr;align-items:center;gap:4vw;padding:120px 0 60px}
+.hero h1{font-weight:400;font-size:clamp(2.8rem,6.4vw,5.6rem);line-height:1;letter-spacing:-.025em;margin:1.2rem 0 1.5rem}
+.hero h1 .destaque{position:relative;white-space:nowrap}
+.hero h1 .destaque::after{content:'';position:absolute;left:-.04em;right:-.04em;bottom:.06em;height:.28em;background:var(--amarelo);z-index:-1;transform-origin:left;transform:scaleX(var(--s,1))}
+.hero p{font-size:1.15rem;color:var(--suave);max-width:28rem;line-height:1.6;margin-bottom:2.2rem}
+.acoes{display:flex;gap:.8rem;flex-wrap:wrap;align-items:center}
+.provas{display:flex;gap:2rem;margin-top:2.8rem;flex-wrap:wrap}
+.provas div{font-size:.86rem;color:var(--suave)}
+.provas b{display:block;font-weight:500;font-size:1.5rem;color:var(--marrom)}
+
+/* cartão inclinável (inspirado no TiltedCard do React Bits) */
+.cena3d{perspective:1100px;position:relative}
+.tilt{position:relative;aspect-ratio:4/5;border-radius:28px;overflow:hidden;transform-style:preserve-3d;box-shadow:0 40px 80px -30px rgba(46,26,22,.5);will-change:transform}
+.tilt img{width:100%;height:100%;object-fit:cover}
+.tilt .brilho{position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,30%),rgba(255,255,255,.35),transparent 45%);mix-blend-mode:soft-light;pointer-events:none}
+.selo{position:absolute;left:-22px;bottom:34px;background:var(--creme);border-radius:18px;padding:14px 18px;display:flex;align-items:center;gap:12px;box-shadow:0 20px 40px -18px rgba(46,26,22,.35);transform:translateZ(60px)}
+.selo img{width:54px;height:54px;border-radius:12px;object-fit:cover}
+.selo b{display:block;font-weight:500;font-size:.95rem}.selo span{font-size:.78rem;color:var(--suave)}
+.giro{position:absolute;right:-26px;top:-26px;width:118px;height:118px;transform:translateZ(80px)}
+.giro svg{width:100%;height:100%;animation:gira 16s linear infinite}
+.giro text{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:3.2px;fill:var(--marrom);text-transform:uppercase}
+.giro .centro{position:absolute;inset:32px;border-radius:50%;background:var(--amarelo);display:grid;place-items:center}
+.giro .centro img{width:34px}
+@keyframes gira{to{transform:rotate(360deg)}}
+
+/* faixa de peles */
+.faixa{padding:22px 0;background:var(--marrom-2);overflow:hidden}
+.faixa-trilho{display:flex;gap:14px;width:max-content}
+.faixa-trilho img{width:150px;height:92px;object-fit:cover;border-radius:12px}
+.faixa-trilho span{display:flex;align-items:center;padding:0 18px;font-family:'Space Mono',monospace;font-size:.75rem;letter-spacing:.24em;text-transform:uppercase;color:var(--amarelo);white-space:nowrap}
+
+/* benefícios */
+.porque{padding:16vh 0}
+.porque-head{display:flex;justify-content:space-between;align-items:end;gap:2rem;flex-wrap:wrap;margin-bottom:52px}
+.porque h2,.cta h2{font-weight:400;font-size:clamp(2.1rem,4.4vw,3.8rem);line-height:1.05;letter-spacing:-.02em;margin-top:1rem}
+.porque-head p{max-width:24rem;color:var(--suave)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{position:relative;background:#fff;border-radius:24px;padding:30px;overflow:hidden;border:1px solid var(--creme-2);transition:border-color .3s}
+.card::after{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(400px circle at var(--x,50%) var(--y,0%),rgba(248,181,0,.16),transparent 40%);opacity:0;transition:opacity .3s;pointer-events:none}
+.card:hover::after{opacity:1}.card:hover{border-color:rgba(248,181,0,.5)}
+.card .ico{width:52px;height:52px;border-radius:16px;background:var(--creme);display:grid;place-items:center;margin-bottom:22px}
+.card .ico svg{width:26px;height:26px;stroke:var(--marrom);fill:none;stroke-width:1.6}
+.card h3{font-weight:500;font-size:1.35rem;margin-bottom:.5rem}
+.card p{color:var(--suave);font-size:.95rem;line-height:1.6}
+.card img{max-width:none;margin:24px -30px -30px;width:calc(100% + 60px);height:200px;object-fit:cover}
+
+/* depoimento */
+.fala{display:grid;grid-template-columns:.9fr 1.1fr;gap:5vw;align-items:center;padding-bottom:16vh}
+.fala-img{border-radius:28px;overflow:hidden;aspect-ratio:1}
+.fala-img img{width:100%;height:100%;object-fit:cover}
+.fala blockquote{font-size:clamp(1.4rem,2.6vw,2.2rem);line-height:1.35;font-weight:300}
+.fala blockquote em{font-style:normal;background:linear-gradient(transparent 62%,rgba(248,181,0,.5) 62%)}
+.fala .quem{margin-top:1.6rem;display:flex;align-items:center;gap:14px}
+.fala .quem .script{font-family:'Allura',cursive;font-size:2.4rem;line-height:1}
+.fala .quem small{font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--suave)}
+
+/* CTA */
+.cta{margin:0 auto 8vh;width:min(1200px,94vw);border-radius:36px;background:var(--marrom);color:var(--creme);padding:clamp(48px,8vw,96px);position:relative;overflow:hidden;display:grid;grid-template-columns:1.2fr 1fr;gap:4vw;align-items:center}
+.cta h2{color:var(--creme)}
+.cta p{color:#D9CBBB;margin:1.2rem 0 2rem;max-width:28rem}
+.cta .eyebrow{color:var(--amarelo)}
+.cta-img{border-radius:24px;overflow:hidden;aspect-ratio:4/3}
+.cta-img img{width:100%;height:100%;object-fit:cover}
+.cta small{display:block;margin-top:1.2rem;font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#B9A99B}
+.cta .btn-linha{border-color:rgba(246,241,235,.3);color:var(--creme)}.cta .btn-linha:hover{background:var(--creme);color:var(--marrom)}
+footer{padding:0 0 40px;text-align:center;font-size:.82rem;color:var(--suave)}
+footer img{height:28px;width:auto;margin:0 auto 14px}
+
+@media(max-width:860px){.hero,.fala,.cta{grid-template-columns:1fr}.hero{padding-top:110px}.cards{grid-template-columns:1fr}.cena3d{max-width:420px;margin:0 auto;width:86%}.giro{right:-14px;width:96px;height:96px}.giro .centro{inset:26px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav"><img src="img/logo.png" alt="Guaipets"><a class="btn am" href="https://wa.me/5551991341212">Pedir a minha <span class="seta">→</span></a></div></header>
+
+<main>
+  <section class="wrap hero">
+    <div>
+      <span class="eyebrow" data-sobe>Caminhas para pets · 100% couro</span>
+      <h1 id="titulo">A última caminha que o seu pet vai <span class="destaque">destruir.</span></h1>
+      <p data-sobe>Couro natural com pelo, feita para durar. Não pega odor, limpa fácil e fica bonita na sua sala.</p>
+      <div class="acoes" data-sobe>
+        <a class="btn" href="https://wa.me/5551991341212">Quero uma Guaipets <span class="seta">→</span></a>
+        <a class="btn-linha" href="#porque">Por que couro?</a>
+      </div>
+      <div class="provas" data-sobe>
+        <div><b>100%</b>couro natural</div>
+        <div><b>20 dias</b>sob encomenda</div>
+        <div><b>Única</b>cada pele</div>
+      </div>
+    </div>
+    <div class="cena3d" id="cena3d">
+      <div class="tilt" id="tilt">
+        <img src="img/gato-laranja.jpg" alt="Gato numa caminha de couro com pelo laranja">
+        <div class="brilho"></div>
+      </div>
+      <div class="selo"><img src="img/pele-patchwork.jpg" alt=""><div><b>Retangular Patchwork</b><span>Pronta-entrega</span></div></div>
+      <div class="giro" aria-hidden="true">
+        <svg viewBox="0 0 120 120"><defs><path id="circ" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs><text><textPath href="#circ">feita à mão · couro natural · guaipets · </textPath></text></svg>
+        <div class="centro"><img src="img/logo-icone.png" alt=""></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="faixa" aria-hidden="true"><div class="faixa-trilho" id="faixa">
+    <img src="img/pele-verde.jpg" alt=""><span>Tingimento especial</span><img src="img/pele-cinza.jpg" alt=""><span>Couro de qualidade</span><img src="img/det-patch.jpg" alt=""><span>Lisos ou trabalhados</span><img src="img/pele-malhada.jpg" alt=""><span>Peles exclusivas</span><img src="img/laranja-detalhe.jpg" alt=""><span>Diversos tamanhos</span>
+  </div></div>
+
+  <section class="wrap porque" id="porque">
+    <div class="porque-head">
+      <div><span class="eyebrow">Por que couro</span><h2 data-titulo>Nasceu de um cachorro que comia camas.</h2></div>
+      <p>O Lucky destruiu três camas de tecido. A quarta foi de couro, e dessa ele não deu conta.</p>
+    </div>
+    <div class="cards">
+      <article class="card" data-card>
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/></svg></div>
+        <h3>Resiste a tudo</h3><p>Couro natural aguenta as mordidas que acabam com o tecido em semanas.</p>
+        <img src="img/malhada.jpg" alt="Cachorro brincando numa caminha malhada">
+      </article>
+      <article class="card" data-card>
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3c3 4 6 7 6 11a6 6 0 01-12 0c0-4 3-7 6-11z"/></svg></div>
+        <h3>Sem odor, fácil de limpar</h3><p>Voltou da praia ou da piscina? Um pano resolve e o cheiro não fica.</p>
+        <img src="img/cama-preta.jpg" alt="Cachorro numa caminha preta">
+      </article>
+      <article class="card" data-card>
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 20h16M6 20V9l6-5 6 5v11M10 20v-5h4v5"/></svg></div>
+        <h3>Combina com a casa</h3><p>Uma peça de decoração: o pet fica perto de você, em qualquer ambiente.</p>
+        <img src="img/cama-patchwork.jpg" alt="Caminha de patchwork ao lado de uma poltrona">
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap fala">
+    <div class="fala-img" data-sobe><img src="img/nolah.jpg" alt="Nolah deitada numa caminha de pelo bege"></div>
+    <div data-sobe>
+      <span class="eyebrow">Palavra da CEO</span>
+      <blockquote style="margin-top:1.2rem">“Minha caminha Guaipets me aproximou do meu dono. Posso estar onde ele estiver, <em>em todos os ambientes.</em>”</blockquote>
+      <div class="quem"><span class="script">Nolah</span><small>CEO da Guaipets</small></div>
+    </div>
+  </section>
+
+  <section class="cta" id="pedir">
+    <div>
+      <span class="eyebrow">Pronta-entrega ou sob encomenda</span>
+      <h2 data-titulo>Escolha a pele. A gente faz a caminha.</h2>
+      <p>Tamanho, pele, tingimento e acabamento do seu jeito. Ou leve uma das prontas.</p>
+      <div class="acoes"><a class="btn am" href="https://wa.me/5551991341212">Chamar no WhatsApp <span class="seta">→</span></a><a class="btn-linha" href="mailto:eduardotomazoni@gmail.com">E-mail</a></div>
+      <small>(51) 99134-1212 · Sob encomenda: ~20 dias de produção + frete</small>
+    </div>
+    <div class="cta-img" data-sobe><img src="img/poltrona.jpg" alt="Cachorro sentado numa caminha ao lado de uma poltrona de couro"></div>
+  </section>
+</main>
+<footer><img src="img/logo.png" alt="Guaipets"><span>© <span id="ano"></span> Guaipets · Novo Hamburgo, RS</span></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
+<script>
+document.getElementById('ano').textContent = new Date().getFullYear();
+const fino = matchMedia('(hover: hover)').matches;
+
+/* brilho que segue o mouse nos cards (spotlight) */
+document.querySelectorAll('[data-card]').forEach(c => c.addEventListener('pointermove', e => {
+  const r = c.getBoundingClientRect(); c.style.setProperty('--x', (e.clientX - r.left) + 'px'); c.style.setProperty('--y', (e.clientY - r.top) + 'px');
+}));
+
+(function () {
+  if (!window.gsap) return;
+  gsap.registerPlugin(ScrollTrigger); if (window.SplitText) gsap.registerPlugin(SplitText);
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  if (window.Lenis) {
+    const lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+    lenis.on('scroll', ScrollTrigger.update); gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0);
+    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => { const el = document.querySelector(a.getAttribute('href')); if (!el) return; e.preventDefault(); lenis.scrollTo(el, { offset: -90 }); }));
+  }
+
+  /* título com blur + subida palavra a palavra (estilo BlurText) */
+  const titulo = document.getElementById('titulo');
+  const tl = gsap.timeline({ delay: .15 });
+  if (window.SplitText) {
+    const st = new SplitText(titulo, { type: 'words' });
+    tl.from(st.words, { y: 40, opacity: 0, filter: 'blur(12px)', duration: 1, ease: 'power3.out', stagger: .07 });
+  }
+  tl.fromTo('.destaque', { '--s': 0 }, { '--s': 1, duration: .7, ease: 'power3.inOut' }, '-=.35')
+    .from('.hero [data-sobe]', { y: 24, opacity: 0, duration: .8, ease: 'power3.out', stagger: .1 }, '-=.6')
+    .from('#cena3d', { y: 60, opacity: 0, rotate: 3, duration: 1.2, ease: 'expo.out' }, .2)
+    .from('.selo', { x: -30, opacity: 0, duration: .8, ease: 'back.out(1.6)' }, '-=.6')
+    .from('.giro', { scale: 0, rotate: -90, duration: .9, ease: 'back.out(1.8)' }, '-=.6');
+
+  /* cartão inclinável */
+  const tilt = document.getElementById('tilt'), cena = document.getElementById('cena3d');
+  if (fino) {
+    const rx = gsap.quickTo(tilt, 'rotateX', { duration: .6, ease: 'power3' }), ry = gsap.quickTo(tilt, 'rotateY', { duration: .6, ease: 'power3' });
+    cena.addEventListener('pointermove', e => { const r = cena.getBoundingClientRect(), px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+      ry((px - .5) * 16); rx((.5 - py) * 12); tilt.style.setProperty('--mx', px * 100 + '%'); tilt.style.setProperty('--my', py * 100 + '%'); });
+    cena.addEventListener('pointerleave', () => { rx(0); ry(0); });
+  }
+  gsap.to('#tilt img', { yPercent: 8, scale: 1.08, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+
+  /* faixa infinita que acelera com a rolagem */
+  const faixa = document.getElementById('faixa'); faixa.innerHTML += faixa.innerHTML;
+  const loop = gsap.to(faixa, { xPercent: -50, duration: 40, ease: 'none', repeat: -1 });
+  ScrollTrigger.create({ onUpdate: s => { gsap.to(loop, { timeScale: 1 + Math.min(Math.abs(s.getVelocity()) / 300, 6), duration: .2, overwrite: true }); gsap.to(loop, { timeScale: 1, duration: 1.2, delay: .2 }); } });
+
+  /* títulos das seções */
+  document.querySelectorAll('[data-titulo]').forEach(h => {
+    if (!window.SplitText) return gsap.from(h, { y: 40, opacity: 0, duration: 1, scrollTrigger: { trigger: h, start: 'top 85%' } });
+    const st = new SplitText(h, { type: 'lines,words', linesClass: 'linha' });
+    gsap.from(st.words, { yPercent: 110, duration: .9, ease: 'power4.out', stagger: .045, scrollTrigger: { trigger: h, start: 'top 85%' } });
+  });
+  gsap.from('[data-card]', { y: 70, opacity: 0, duration: 1, ease: 'power3.out', stagger: .12, scrollTrigger: { trigger: '.cards', start: 'top 80%' } });
+  document.querySelectorAll('main > section:not(.hero) [data-sobe]').forEach(el => gsap.from(el, { y: 50, opacity: 0, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 85%' } }));
+  document.querySelectorAll('.card img, .fala-img img, .cta-img img').forEach(img => gsap.fromTo(img, { yPercent: -6, scale: 1.12 }, { yPercent: 6, scale: 1.12, ease: 'none', scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: true } }));
+  gsap.from('.cta', { scale: .94, borderRadius: 80, duration: 1.2, ease: 'power3.out', scrollTrigger: { trigger: '.cta', start: 'top 85%' } });
+
+  /* botões magnéticos */
+  if (fino) document.querySelectorAll('.btn').forEach(b => { const x = gsap.quickTo(b, 'x', { duration: .5, ease: 'power3' }), y = gsap.quickTo(b, 'y', { duration: .5, ease: 'power3' });
+    b.addEventListener('mousemove', e => { const r = b.getBoundingClientRect(); x((e.clientX - r.left - r.width / 2) * .25); y((e.clientY - r.top - r.height / 2) * .35); });
+    b.addEventListener('mouseleave', () => { x(0); y(0); }); });
+
+  addEventListener('load', () => ScrollTrigger.refresh());
+})();
+</script>
+<a href="../../" style="position:fixed;left:16px;bottom:16px;z-index:999;display:flex;align-items:center;gap:8px;padding:8px 12px 8px 8px;background:rgba(15,26,46,.88);color:#E8D5A8;font:500 12px/1 system-ui,sans-serif;letter-spacing:.08em;text-decoration:none;border:1px solid rgba(201,164,92,.4);backdrop-filter:blur(8px)" aria-label="Voltar para as apresentações da Sartor"><span style="display:grid;place-items:center;width:22px;height:22px;border:1px solid #C9A45C;font:500 15px/1 'Cormorant Garamond',Georgia,serif;color:#C9A45C">S</span>VOLTAR</a>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "guaipets-remotion",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio",
+    "render:logo": "remotion render LogoReveal out/logo-reveal.mp4",
+    "render:cena": "remotion render CenaFinal out/cena.mp4",
+    "frames:cena": "remotion render CenaFinal ../guaipets/rolagem/frames/cena --sequence --image-format=jpeg"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.0",
+    "remotion": "^4.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": { "typescript": "^5.4.0", "@types/react": "^18.3.0" }
+}
