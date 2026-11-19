@@ -8,14 +8,22 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 const CDN = 'https://d2ol7oe51mr4n9.cloudfront.net/user_3Fl1LEZFXzzsah8SKDLWeAM5ZmC/';
 /* Texturas contínuas geradas no Higgsfield a partir das fotos reais; sem URL, usa o recorte local em tex/ */
-const TEXTURAS = {};
+const TX = 'https://d2ol7oe51mr4n9.cloudfront.net/user_3Fl1LEZFXzzsah8SKDLWeAM5ZmC/';
+const TEXTURAS = {
+  patchwork: TX + 'd160706a-8ded-46a2-b2ec-3c5c0bec6e2c.jpg',
+  chevron: TX + '9db99d1f-5a2b-4c90-b085-7af638535a6f.jpg',
+  laranja: TX + '141dc955-14bd-4163-9c7d-b2a9fd7403cf.jpg',
+  malhada: TX + 'f326f074-8b3f-4a50-a2c7-8ac077d3026f.jpg',
+  cinza: TX + 'a2b28853-e238-45be-80a7-dbd641928006.jpg',
+  verde: TX + 'd91efdea-3cc3-4442-804a-7a103293f1ca.jpg',
+};
 export const MODELOS = [
-  { id: 'patchwork', forma: 'ret', pele: 'patchwork', rep: 0.8, debrum: 0x2a211d, linha: 'Linha Trabalhada', nome: 'Retangular Patchwork', glb: 'models/retangular-patchwork.glb', thumb: CDN + 'd2a086c9-93b6-4956-a2c3-3afb039def7b.jpg', desc: 'Recortes de couro malhado em chevron, borda debruada e almofada central em couro preto.', specs: [['Formato', 'Retangular'], ['Acabamento', 'Patchwork'], ['Pele', 'Malhada natural']] },
-  { id: 'redonda', forma: 'red', pele: 'chevron', rep: 2.2, debrum: 0x161414, linha: 'Linha Trabalhada', nome: 'Redonda Chevron', glb: 'models/redonda-chevron.glb', thumb: CDN + 'c7b735d1-df32-4304-be35-6da092be9d0d.jpg', desc: 'Formato ninho, laterais altas em patchwork chevron preto e branco para o pet se enrolar.', specs: [['Formato', 'Redonda'], ['Acabamento', 'Patchwork chevron'], ['Pele', 'Preto e branco']] },
-  { id: 'laranja', forma: 'ret', pele: 'laranja', rep: 2.4, debrum: 0x1c2a48, linha: 'Linha Tingida', nome: 'Retangular Laranja', glb: 'models/retangular-laranja.glb', thumb: CDN + '842faed1-dffc-4981-835a-6e4b980607f0.jpg', desc: 'Pelo longo com tingimento laranja intenso e debrum em couro marinho.', specs: [['Formato', 'Retangular'], ['Acabamento', 'Liso'], ['Pele', 'Tingimento especial']] },
-  { id: 'malhada', forma: 'ret', pele: 'malhada', rep: 2.6, debrum: 0x161414, linha: 'Linha Exclusiva', nome: 'Retangular Malhada', glb: 'models/retangular-malhada.glb', thumb: 'img/pele-malhada.jpg', desc: 'Pele malhada marrom e branca, única em cada peça, com debrum em couro preto.', specs: [['Formato', 'Retangular'], ['Acabamento', 'Liso'], ['Pele', 'Exclusiva']] },
-  { id: 'cinza', forma: 'ret', pele: 'cinza', rep: 2.4, debrum: 0x161414, linha: 'Linha Lisa', nome: 'Retangular Cinza', glb: 'models/retangular-cinza.glb', thumb: 'img/pele-cinza.jpg', desc: 'Pelo curto cinza mesclado, discreta e fácil de combinar.', specs: [['Formato', 'Retangular'], ['Acabamento', 'Liso'], ['Pele', 'Cinza natural']] },
-  { id: 'verde', forma: 'ret', pele: 'verde', rep: 2.4, debrum: 0x14110f, linha: 'Linha Tingida', nome: 'Retangular Verde', glb: 'models/retangular-verde.glb', thumb: 'img/pele-verde.jpg', desc: 'Pelo longo tingido em verde profundo com debrum em couro escuro.', specs: [['Formato', 'Retangular'], ['Acabamento', 'Liso'], ['Pele', 'Tingimento especial']] },
+  { id: 'patchwork', forma: 'ret', pele: 'patchwork', rep: 5, debrum: 0x2a211d, linha: 'Linha Trabalhada', nome: 'Retangular Patchwork', glb: 'models/retangular-patchwork.glb', thumb: CDN + 'd2a086c9-93b6-4956-a2c3-3afb039def7b.jpg', desc: 'Recortes de couro malhado em chevron, borda debruada e almofada central em couro preto.', specs: [['Formato', 'Retangular'], ['Acabamento', 'Patchwork'], ['Pele', 'Malhada natural']] },
+  { id: 'redonda', forma: 'red', pele: 'chevron', rep: 4, debrum: 0x161414, linha: 'Linha Trabalhada', nome: 'Redonda Chevron', glb: 'models/redonda-chevron.glb', thumb: CDN + 'c7b735d1-df32-4304-be35-6da092be9d0d.jpg', desc: 'Formato ninho, laterais altas em patchwork chevron preto e branco para o pet se enrolar.', specs: [['Formato', 'Redonda'], ['Acabamento', 'Patchwork chevron'], ['Pele', 'Preto e branco']] },
+  { id: 'laranja', forma: 'ret', pele: 'laranja', rep: 4.5, debrum: 0x1c2a48, linha: 'Linha Tingida', nome: 'Retangular Laranja', glb: 'models/retangular-laranja.glb', thumb: CDN + '842faed1-dffc-4981-835a-6e4b980607f0.jpg', desc: 'Pelo longo com tingimento laranja intenso e debrum em couro marinho.', specs: [['Formato', 'Retangular'], ['Acabamento', 'Liso'], ['Pele', 'Tingimento especial']] },
+  { id: 'malhada', forma: 'ret', pele: 'malhada', rep: 3.5, debrum: 0x161414, linha: 'Linha Exclusiva', nome: 'Retangular Malhada', glb: 'models/retangular-malhada.glb', thumb: 'img/pele-malhada.jpg', desc: 'Pele malhada marrom e branca, única em cada peça, com debrum em couro preto.', specs: [['Formato', 'Retangular'], ['Acabamento', 'Liso'], ['Pele', 'Exclusiva']] },
+  { id: 'cinza', forma: 'ret', pele: 'cinza', rep: 4.5, debrum: 0x161414, linha: 'Linha Lisa', nome: 'Retangular Cinza', glb: 'models/retangular-cinza.glb', thumb: 'img/pele-cinza.jpg', desc: 'Pelo curto cinza mesclado, discreta e fácil de combinar.', specs: [['Formato', 'Retangular'], ['Acabamento', 'Liso'], ['Pele', 'Cinza natural']] },
+  { id: 'verde', forma: 'ret', pele: 'verde', rep: 4.5, debrum: 0x14110f, linha: 'Linha Tingida', nome: 'Retangular Verde', glb: 'models/retangular-verde.glb', thumb: 'img/pele-verde.jpg', desc: 'Pelo longo tingido em verde profundo com debrum em couro escuro.', specs: [['Formato', 'Retangular'], ['Acabamento', 'Liso'], ['Pele', 'Tingimento especial']] },
 ];
 
 export function criarVisualizador(palco) {
@@ -64,7 +72,7 @@ export function criarVisualizador(palco) {
     const k = nome + '@' + rep;
     if (cache[k]) return cache[k];
     const c = loader.load(TEXTURAS[nome] || ('tex/' + nome + '.jpg'));
-    c.colorSpace = THREE.SRGBColorSpace; c.wrapS = c.wrapT = THREE.MirroredRepeatWrapping;
+    c.colorSpace = THREE.SRGBColorSpace; c.wrapS = c.wrapT = TEXTURAS[nome] ? THREE.RepeatWrapping : THREE.MirroredRepeatWrapping;
     c.repeat.set(rep, 1); c.anisotropy = 8; return (cache[k] = c);
   }
   const pelo = (m) => new THREE.MeshPhysicalMaterial({ map: tex(m.pele, m.rep), roughness: 0.92, sheen: 1, sheenRoughness: 0.55, sheenColor: new THREE.Color(0xffffff).multiplyScalar(0.35) });
