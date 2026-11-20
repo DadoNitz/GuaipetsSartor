@@ -10,8 +10,8 @@ const SEQUENCIA = { pasta: 'frames/cena/', ext: '.webp', total: 0, digitos: 4 };
 /* Ou um vídeo só, codificado com todos os quadros-chave (-g 1) para a rolagem ficar suave.
    Tem prioridade sobre SEQUENCIA. Deixe '' para usar as fotos. */
 const VIDEO_CENA = matchMedia('(max-width: 800px)').matches
-  ? 'https://d2ol7oe51mr4n9.cloudfront.net/user_3Fl1LEZFXzzsah8SKDLWeAM5ZmC/4d64ecb8-7f7d-4a9a-bd69-4aa2e50b5538.mp4'
-  : 'https://d2ol7oe51mr4n9.cloudfront.net/user_3Fl1LEZFXzzsah8SKDLWeAM5ZmC/b4e01593-0be9-45ea-97be-c6848717379b.mp4';
+  ? 'https://d2ol7oe51mr4n9.cloudfront.net/user_3Fl1LEZFXzzsah8SKDLWeAM5ZmC/7db73844-8fda-4177-9dc2-20329b88ef30.mp4'
+  : 'https://d2ol7oe51mr4n9.cloudfront.net/user_3Fl1LEZFXzzsah8SKDLWeAM5ZmC/7db73844-8fda-4177-9dc2-20329b88ef30.mp4';
 const VIDEO_PRODUTO = 'https://d2ol7oe51mr4n9.cloudfront.net/user_3Fl1LEZFXzzsah8SKDLWeAM5ZmC/2b10976e-c410-4594-9975-eaaae5ffc89c.mp4';
 
 const $ = (s, el = document) => el.querySelector(s);
